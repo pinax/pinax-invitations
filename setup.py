@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from distutils.core import setup
 
 
 setup(
@@ -8,6 +8,14 @@ setup(
     url = "https://github.com/eldarion/django-invitations",
     author = "Eldarion",
     author_email = "opensource@eldarion.com",
-    packages = find_packages(),
+    packages = [
+        "invitations",
+        "invitations.templatetags"
+    ],
+    package_data = {
+            "invitations": [
+                "templates/invitations/*.html",
+            ]
+        },
     zip_safe = False
 )
