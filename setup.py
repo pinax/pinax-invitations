@@ -3,7 +3,7 @@ from distutils.core import setup
 
 setup(
     name = "invitations",
-    version = "0.1.dev1",
+    version = "0.1.dev2",
     description = "an invitations app",
     url = "https://github.com/eldarion/django-invitations",
     author = "Eldarion",
