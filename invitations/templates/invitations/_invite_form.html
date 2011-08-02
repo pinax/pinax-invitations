@@ -1,0 +1,12 @@
+{% load uni_form_tags %}
+<div class="invitation_form">
+    {% if user.invitationstat.can_send %}
+        <form action="{% url invitations_invite %}" method="POST" accept-charset="utf-8">
+            {% csrf_token %}
+            {{ form|as_uni_form }}
+            <p><input type="submit" value="Invite"></p>
+        </form>
+    {% else %}
+        <p>You do not have any invitiations currrently.</p>
+    {% endif %}
+</div>

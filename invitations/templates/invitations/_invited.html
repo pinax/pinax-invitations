@@ -1,0 +1,19 @@
+{% load invitations_tags %}
+
+{% if invited_list %}
+    <ul>
+        {% for invited in invited_list %}
+            <li class="{{ invited|status_class }}">
+                {% if invited.to_user %}
+                    <a href="{{ invited.to_user.get_profile.get_absolute_url }}">
+                        {{ invited.signup_code.email }}
+                    </a>
+                {% else %}
+                    {{ invited.signup_code.email }}
+                {% endif %}
+            </li>
+        {% endfor %}
+    </ul>
+{% else %}
+    <p>You have no sent any invites.</p>
+{% endif %}
