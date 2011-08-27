@@ -1,6 +1,7 @@
 from django import template
 
 from invitations.forms import InviteForm
+from invitations.models import InvitationStat
 
 
 register = template.Library()
@@ -23,7 +24,10 @@ class RemainingInvitesNode(template.Node):
     
     def render(self, context):
         user = self.user.resolve(context)
-        return user.invitationstat.invites_remaining()
+        try:
+            return user.invitationstat.invites_remaining()
+        except InvitationStat.DoesNotExist:
+            return "0"
 
 
 @register.tag
