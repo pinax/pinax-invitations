@@ -40,6 +40,9 @@ class JoinInvitation(models.Model):
     status = models.IntegerField(choices=INVITE_STATUS_CHOICES)
     signup_code = models.OneToOneField(SignupCode)
     
+    def to_user_email(self):
+        return self.signup_code.email
+    
     @classmethod
     def invite(cls, from_user, to_email, message=None):
         if not from_user.invitationstat.can_send():
