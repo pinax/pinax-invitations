@@ -2,12 +2,12 @@ from distutils.core import setup
 
 
 setup(
-    name = "invitations",
+    name = "django-invitations",
     version = "0.1.dev2",
     description = "an invitations app",
     url = "https://github.com/eldarion/django-invitations",
     author = "Eldarion",
-    author_email = "opensource@eldarion.com",
+    author_email = "paltman@eldarion.com",
     packages = [
         "invitations",
         "invitations.templatetags"
