@@ -46,6 +46,7 @@ class JoinInvitation(models.Model):
             raise NotEnoughInvitationsError()
         
         signup_code = SignupCode.create(to_email, DEFAULT_INVITE_EXPIRATION)
+        signup_code.inviter = from_user
         signup_code.save()
         join = cls.objects.create(
             from_user=from_user,
