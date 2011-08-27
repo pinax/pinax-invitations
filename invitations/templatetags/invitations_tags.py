@@ -53,6 +53,6 @@ def status_class(invite):
         return "sent"
     elif invite.status == invite.STATUS_ACCEPTED:
         return "accepted"
-    elif invite.status == invite.STATUS_JOINED:
+    elif invite.status == invite.STATUS_JOINED_INDEPENDENTLY:
         return "joined"
     return ""
