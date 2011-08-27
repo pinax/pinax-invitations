@@ -9,6 +9,8 @@ from django.contrib.auth.models import User
 from pinax.apps.signup_codes.models import SignupCode, SignupCodeResult
 from pinax.apps.signup_codes.signals import signup_code_used
 
+from emailconfirmation.models import EmailConfirmation
+from emailconfirmation.signals import email_confirmed
 from invitations.signals import invite_sent, invite_accepted
 
 
@@ -91,6 +93,20 @@ def process_used_signup_code(sender, **kwargs):
 
 
 signup_code_used.connect(process_used_signup_code, sender=SignupCodeResult)
+
+
+def process_email_confirmed(sender, **kwargs):
+    email_address = kwargs.get("email_address")
+    invites = JoinInvitation.objects.filter(
+        to_user__isnull=True,
+        signup_code__email=email_address.email
+    )
+    for invite in invites:
+        invite.to_user = email_address.user
+        invite.status = JoinInvitation.STATUS_JOINED_INDEPENDENTLY
+        invite.save()
+
+email_confirmed.connect(process_email_confirmed, sender=EmailConfirmation)
 
 
 def create_stat(sender, instance=None, **kwargs):
