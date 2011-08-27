@@ -17,7 +17,9 @@ def invite(request):
     if form.is_valid():
         email = form.cleaned_data["email_address"]
         if EmailAddress.objects.filter(email=email, verified=True).exists():
-            data = {"status": "ERROR", "errors": "A user with %s as their email address already exists." % email}
+            data = {"status": "ERROR", "errors": '<ul class="errorlist"><li>%s is already on this site</li></ul>' % email}
+        elif JoinInvitation.objects.filter(from_user=request.user, signup_code__email=email).exists():
+            data = {"status": "ERROR", "errors": '<ul class="errorlist"><li>You have already invited %s</li></ul>' % email}
         else:
             JoinInvitation.invite(request.user, email)
             data = {
@@ -26,5 +28,5 @@ def invite(request):
                 "invitations_remaining": request.user.invitationstat.invites_remaining()
             }
     else:
-        data = {"status": "ERROR", "errors": form.errors}
+        data = {"status": "ERROR", "errors": str(form.errors["email_address"])}
     return http.HttpResponse(json.dumps(data), content_type="application/json")
