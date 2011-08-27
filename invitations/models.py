@@ -14,7 +14,6 @@ from emailconfirmation.signals import email_confirmed
 from invitations.signals import invite_sent, invite_accepted
 
 
-DEFAULT_INVITE_ALLOCATION = getattr(settings, "INVITATIONS_DEFAULT_ALLOCATION", 0)
 DEFAULT_INVITE_EXPIRATION = getattr(settings, "INVITATIONS_DEFAULT_EXPIRATION", 168) # 168 Hours = 7 Days
 
 
@@ -66,7 +65,7 @@ class InvitationStat(models.Model):
     
     user = models.OneToOneField(User)
     invites_sent = models.IntegerField(default=0)
-    invites_allocated = models.IntegerField(default=DEFAULT_INVITE_ALLOCATION)
+    invites_allocated = models.IntegerField(default=0)
     invites_accepted = models.IntegerField(default=0)
     
     def invites_remaining(self):
