@@ -1,4 +1,5 @@
 {% load uni_form_tags %}
+<div id="invitation-form-messages"></div>
 <div class="invitation_form">
     {% if user.invitationstat.can_send %}
         <form action="{% url invitations_invite %}" method="POST" accept-charset="utf-8">
