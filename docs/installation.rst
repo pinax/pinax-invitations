@@ -5,7 +5,7 @@ Installation
 
 * To install kaleo::
 
-    pip install kaleo --extra-index-url=http://dist.pinaxproject.com/dev/
+    pip install kaleo
 
 * Add ``'kaleo'`` to your ``INSTALLED_APPS`` setting::
 
