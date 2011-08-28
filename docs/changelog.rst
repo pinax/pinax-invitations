@@ -1,6 +1,9 @@
 .. _changelog:
 
-ChnageLog
+ChangeLog
 =========
 
-- Put changes here
+0.1
+---
+
+- initial release

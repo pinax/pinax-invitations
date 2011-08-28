@@ -9,10 +9,8 @@ to function via AJAX and as such returns JSON.
 
 Firstly, you will want to add the following blocks in your templates where
 you want to expose the invite form and display to the user a list of who they
-have invited (of course you may choose to not expose that):
+have invited (of course you may choose to not expose that)::
 
-.. code-block: django
-    
     {% load kaleo_tags %}
     
     <div class="invites">
@@ -26,10 +24,8 @@ have invited (of course you may choose to not expose that):
 
 
 Then if you had an account bar somewhere at the top of your screen where you
-showed the user if they were logged in or note you could have:
+showed the user if they were logged in or note you could have::
 
-.. code-block: django
-    
     {% load kaleo_tags %}
     
     <span class="invitations_remaining">
@@ -37,10 +33,8 @@ showed the user if they were logged in or note you could have:
     </span>
 
 
-And then a bit of jQuery:
+And then a bit of jQuery::
 
-.. code-block: javascript
-    
     $(function () {
         $('.invites form').ajaxForm(function(data) {
             if (data.status == "OK") {
