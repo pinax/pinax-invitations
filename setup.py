@@ -2,19 +2,19 @@ from distutils.core import setup
 
 
 setup(
-    name = "django-invitations",
+    name = "kaleo",
     version = "0.1.dev2",
-    description = "an invitations app",
-    url = "https://github.com/eldarion/django-invitations",
+    description = "an user to user join invitations app",
+    url = "https://github.com/eldarion/kaleo",
     author = "Eldarion",
     author_email = "paltman@eldarion.com",
     packages = [
-        "invitations",
-        "invitations.templatetags"
+        "kaleo",
+        "kaleo.templatetags"
     ],
     package_data = {
-            "invitations": [
-                "templates/invitations/*.html",
+            "kaleo": [
+                "templates/kaleo/*.html",
             ]
         },
     zip_safe = False

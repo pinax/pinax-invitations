@@ -3,18 +3,18 @@
 Installation
 ============
 
-* To install Django Invitations::
+* To install kaleo::
 
-    pip install django-invitations --extra-index-url=http://dist.pinaxproject.com/dev/
+    pip install kaleo --extra-index-url=http://dist.pinaxproject.com/dev/
 
-* Add ``'invitations'`` to your ``INSTALLED_APPS`` setting::
+* Add ``'kaleo'`` to your ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
         # other apps
-        "invitations",
+        "kaleo",
     )
 
-* See the list of :ref:`settings` to modify Django Invitations's
+* See the list of :ref:`settings` to modify kaleo's
   default behavior and make adjustments for your website.
 
 .. _dependencies:

@@ -6,8 +6,8 @@ from django.contrib.auth.decorators import login_required
 
 from emailconfirmation.models import EmailAddress
 
-from invitations.forms import InviteForm
-from invitations.models import JoinInvitation
+from kaleo.forms import InviteForm
+from kaleo.models import JoinInvitation
 
 
 @login_required

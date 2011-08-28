@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# django-invitations documentation build configuration file, created by
+# kaleo documentation build configuration file, created by
 # sphinx-quickstart on Sat Aug 27 13:25:18 2011.
 #
 # This file is execfile()d with the current directory set to its containing dir.
@@ -40,7 +40,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'django-invitations'
+project = u'kaleo'
 copyright = u'2011, Eldarion'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -164,7 +164,7 @@ html_static_path = []
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'django-invitationsdoc'
+htmlhelp_basename = 'kaleodoc'
 
 
 # -- Options for LaTeX output --------------------------------------------------
@@ -178,7 +178,7 @@ htmlhelp_basename = 'django-invitationsdoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, documentclass [howto/manual]).
 latex_documents = [
-  ('index', 'django-invitations.tex', u'django-invitations Documentation',
+  ('index', 'kaleo.tex', u'kaleo Documentation',
    u'Eldarion', 'manual'),
 ]
 
@@ -211,6 +211,6 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'django-invitations', u'django-invitations Documentation',
+    ('index', 'kaleo', u'kaleo Documentation',
      [u'Eldarion'], 1)
 ]

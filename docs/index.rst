@@ -1,6 +1,6 @@
-==================
-Django Invitations
-==================
+=====
+kaleo
+=====
 
 Provides a site with user to user invitations, working closely with both
 Pinax's `signup_codes` and `django-email-confirmation`.

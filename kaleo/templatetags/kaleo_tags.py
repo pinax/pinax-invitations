@@ -1,7 +1,7 @@
 from django import template
 
-from invitations.forms import InviteForm
-from invitations.models import InvitationStat
+from kaleo.forms import InviteForm
+from kaleo.models import InvitationStat
 
 
 register = template.Library()

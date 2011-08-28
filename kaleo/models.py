@@ -11,10 +11,10 @@ from pinax.apps.signup_codes.signals import signup_code_used
 
 from emailconfirmation.models import EmailConfirmation
 from emailconfirmation.signals import email_confirmed
-from invitations.signals import invite_sent, invite_accepted
+from kaleo.signals import invite_sent, invite_accepted
 
 
-DEFAULT_INVITE_EXPIRATION = getattr(settings, "INVITATIONS_DEFAULT_EXPIRATION", 168) # 168 Hours = 7 Days
+DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168) # 168 Hours = 7 Days
 
 
 class NotEnoughInvitationsError(Exception):

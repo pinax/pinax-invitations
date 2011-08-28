@@ -1,2 +1,2 @@
 include README.rst
-recursive-include invitations/templates *.html
+recursive-include kaleo/templates *.html

@@ -3,10 +3,10 @@
 Settings
 ========
 
-.. _invitations_default_expiration:
+.. _kaleo_default_expiration:
 
-INVITATIONS_DEFAULT_EXPIRATION
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KALEO_DEFAULT_EXPIRATION
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 :Default: 168 (7 days)
 

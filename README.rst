@@ -1,5 +1,7 @@
-django-invitations
-==================
+kaleo
+=====
+
+a user to user join invitations app
 
 
 To Document

@@ -1,6 +1,6 @@
 from django.contrib import admin
 
-from invitations.models import JoinInvitation, InvitationStat
+from kaleo.models import JoinInvitation, InvitationStat
 
 
 class InvitationStatAdmin(admin.ModelAdmin):
