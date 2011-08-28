@@ -41,12 +41,12 @@ def remaining_invites(parser, token):
     return RemainingInvitesNode.handle_token(parser, token)
 
 
-@register.inclusion_tag("invitations/_invite_form.html")
+@register.inclusion_tag("kaleo/_invite_form.html")
 def invite_form(user):
     return {"form": InviteForm(), "user": user}
 
 
-@register.inclusion_tag("invitations/_invited.html")
+@register.inclusion_tag("kaleo/_invited.html")
 def invites_sent(user):
     return {"invited_list": user.invites_sent.all()}
 

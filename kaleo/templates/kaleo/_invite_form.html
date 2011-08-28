@@ -2,7 +2,7 @@
 <div id="invitation-form-messages"></div>
 <div class="invitation_form">
     {% if user.invitationstat.can_send %}
-        <form action="{% url invitations_invite %}" method="POST" accept-charset="utf-8">
+        <form action="{% url kaleo_invite %}" method="POST" accept-charset="utf-8">
             {% csrf_token %}
             {{ form|as_uni_form }}
             <p><input type="submit" value="Invite"></p>
