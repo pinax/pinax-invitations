@@ -17,6 +17,13 @@ Installation
 * See the list of :ref:`settings` to modify kaleo's
   default behavior and make adjustments for your website.
 
+* Lastly you will want to add `kaleo.urls` to your urls definition::
+
+    ...
+    url(r"^invites/", include("kaleo.urls")),
+    ...
+
+
 .. _dependencies:
 
 Dependencies
