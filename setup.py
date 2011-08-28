@@ -109,11 +109,12 @@ DESCRIPTION = "a user to user join invitations app"
 AUTHOR = "Eldarion"
 AUTHOR_EMAIL = "paltman@eldarion.com"
 URL = "http://github.com/eldarion/kaleo"
+VERSION = __import__(PACKAGE).__version__
 
 
 setup(
     name=NAME,
-    version=":versiontools:%s:" % PACKAGE,
+    version=VERSION,
     description=DESCRIPTION,
     long_description=read("README.rst"),
     author=AUTHOR,
@@ -131,9 +132,6 @@ setup(
         "Programming Language :: Python",
         "Framework :: Django",
     ],
-    zip_safe=False,
-    setup_requires=[
-        "versiontools >= 1.6"
-    ]
+    zip_safe=False
 )
 
