@@ -1,3 +1,4 @@
+import codecs
 import os
 import sys
 
@@ -7,7 +8,7 @@ from setuptools import setup, find_packages
 
 
 def read(fname):
-    return open(os.path.join(os.path.dirname(__file__), fname)).read()
+    return codecs.open(os.path.join(os.path.dirname(__file__), fname)).read()
 
 
 # Provided as an attribute, so you can append to these instead
@@ -108,12 +109,11 @@ DESCRIPTION = "a user to user join invitations app"
 AUTHOR = "Eldarion"
 AUTHOR_EMAIL = "paltman@eldarion.com"
 URL = "http://github.com/eldarion/kaleo"
-VERSION = __import__(PACKAGE).__version__
 
 
 setup(
     name=NAME,
-    version=VERSION,
+    version=":versiontools:%s:" % PACKAGE,
     description=DESCRIPTION,
     long_description=read("README.rst"),
     author=AUTHOR,
@@ -132,5 +132,8 @@ setup(
         "Framework :: Django",
     ],
     zip_safe=False,
+    setup_requires=[
+        "versiontools >= 1.6"
+    ]
 )
 
