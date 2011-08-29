@@ -15,6 +15,7 @@ from kaleo.signals import invite_sent, invite_accepted
 
 
 DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168) # 168 Hours = 7 Days
+DEFAULT_INVITE_ALLOCATION = getattr(settings, "KALEO_DEFAULT_INVITE_ALLOCATION", 0)
 
 
 class NotEnoughInvitationsError(Exception):
@@ -69,7 +70,7 @@ class InvitationStat(models.Model):
     
     user = models.OneToOneField(User)
     invites_sent = models.IntegerField(default=0)
-    invites_allocated = models.IntegerField(default=0)
+    invites_allocated = models.IntegerField(default=DEFAULT_INVITE_ALLOCATION)
     invites_accepted = models.IntegerField(default=0)
     
     def invites_remaining(self):
