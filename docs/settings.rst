@@ -20,4 +20,4 @@ KALEO_DEFAULT_INVITE_ALLOCATION
 :Default: 0
 
 Defines the default allocation of invites that new users get when they
-signup.
+signup. In order to enable unlimited invitations, just set this to -1.

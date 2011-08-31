@@ -74,9 +74,13 @@ class InvitationStat(models.Model):
     invites_accepted = models.IntegerField(default=0)
     
     def invites_remaining(self):
+        if self.invites_allocated == -1:
+            return -1
         return self.invites_allocated - self.invites_sent
     
     def can_send(self):
+        if self.invites_allocated == -1:
+            return True
         return self.invites_allocated > self.invites_sent
     can_send.boolean = True
 
