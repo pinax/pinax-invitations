@@ -21,4 +21,5 @@ Contents
  usage
  settings
  templates
+ signals
  changelog
