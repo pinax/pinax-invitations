@@ -3,7 +3,7 @@
 Usage
 =====
 
-Integrating `kaelo` into your project is just a matter of using a couple of
+Integrating `kaleo` into your project is just a matter of using a couple of
 template tags and wiring up a bit of javascript. The invite form is intended
 to function via AJAX and as such returns JSON.
 
@@ -33,7 +33,7 @@ showed the user if they were logged in or note you could have::
     </span>
 
 
-And then a bit of jQuery::
+And then a bit of jQuery (this assumes use of the jquery.form plugin)::
 
     $(function () {
         $('.invites form').ajaxForm(function(data) {

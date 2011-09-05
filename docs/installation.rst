@@ -47,7 +47,7 @@ Used for linking people to invitations when they confirm email addresses.
 pinax.apps.signup_codes_
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Used to manage the sending and processing of signup codes via email.
+This should be from Pinax==0.9a2.dev1019 or later. Used to manage the sending and processing of signup codes via email.
 
 
 .. _django-uni-form: https://github.com/pydanny/django-uni-form
