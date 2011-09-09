@@ -7,7 +7,7 @@ Installation
 
     pip install kaleo
 
-* Add ``'kaleo'`` to your ``INSTALLED_APPS`` setting::
+* Add ``kaleo`` to your ``INSTALLED_APPS`` setting::
 
     INSTALLED_APPS = (
         # other apps
