@@ -1,16 +1,12 @@
-import datetime
-
 from django.db import models
 from django.db.models.signals import post_save
 from django.conf import settings
+from django.utils import timezone
 
 from django.contrib.auth.models import User
 
-from pinax.apps.signup_codes.models import SignupCode, SignupCodeResult
-from pinax.apps.signup_codes.signals import signup_code_used
-
-from emailconfirmation.models import EmailConfirmation
-from emailconfirmation.signals import email_confirmed
+from account.models import SignupCode, SignupCodeResult, EmailConfirmation
+from account.signals import signup_code_used, email_confirmed
 from kaleo.signals import invite_sent, invite_accepted
 
 
@@ -37,7 +33,7 @@ class JoinInvitation(models.Model):
     from_user = models.ForeignKey(User, related_name="invites_sent")
     to_user = models.ForeignKey(User, null=True, related_name="invites_received")
     message = models.TextField(null=True)
-    sent = models.DateTimeField(default=datetime.datetime.now)
+    sent = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(choices=INVITE_STATUS_CHOICES)
     signup_code = models.OneToOneField(SignupCode)
     
@@ -49,8 +45,12 @@ class JoinInvitation(models.Model):
         if not from_user.invitationstat.can_send():
             raise NotEnoughInvitationsError()
         
-        signup_code = SignupCode.create(to_email, DEFAULT_INVITE_EXPIRATION)
-        signup_code.inviter = from_user
+        signup_code = SignupCode.create(
+            email=to_email,
+            inviter=from_user,
+            expiry=DEFAULT_INVITE_EXPIRATION,
+            check_exists=False # before we are called caller must check for existence
+        )
         signup_code.save()
         join = cls.objects.create(
             from_user=from_user,
@@ -58,7 +58,7 @@ class JoinInvitation(models.Model):
             status=JoinInvitation.STATUS_SENT,
             signup_code=signup_code
         )
-        signup_code.send()  # @@@ might want to implement our own method and just set the .send field on signup_code
+        signup_code.send()
         stat = from_user.invitationstat
         stat.invites_sent += 1
         stat.save()
@@ -85,6 +85,7 @@ class InvitationStat(models.Model):
     can_send.boolean = True
 
 
+@receiver(signup_code_used, sender=SignupCodeResult)
 def process_used_signup_code(sender, **kwargs):
     result = kwargs.get("signup_code_result")
     try:
@@ -100,9 +101,7 @@ def process_used_signup_code(sender, **kwargs):
         pass
 
 
-signup_code_used.connect(process_used_signup_code, sender=SignupCodeResult)
-
-
+@receiver(process_email_confirmed, sender=EmailConfirmation)
 def process_email_confirmed(sender, **kwargs):
     email_address = kwargs.get("email_address")
     invites = JoinInvitation.objects.filter(
@@ -114,13 +113,9 @@ def process_email_confirmed(sender, **kwargs):
         invite.status = JoinInvitation.STATUS_JOINED_INDEPENDENTLY
         invite.save()
 
-email_confirmed.connect(process_email_confirmed, sender=EmailConfirmation)
 
-
+@receiver(post_save, sender=User)
 def create_stat(sender, instance=None, **kwargs):
     if instance is None:
         return
     InvitationStat.objects.get_or_create(user=instance)
-
-
-post_save.connect(create_stat, sender=User)

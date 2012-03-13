@@ -9,6 +9,7 @@ class InvitationStatAdmin(admin.ModelAdmin):
     list_display = ["user", "invites_sent", "invites_accepted", "invites_allocated", "invites_remaining", "can_send"]
     list_filter = ["invites_sent", "invites_accepted"]
 
+
 admin.site.register(JoinInvitation,
     list_display = ["from_user", "to_user", "sent", "status", "to_user_email"],
     list_filter = ["sent", "status"],
