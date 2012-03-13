@@ -87,7 +87,7 @@ class InvitationStat(models.Model):
 
 
 @receiver(signup_code_used, sender=SignupCodeResult)
-def process_used_signup_code(sender, **kwargs):
+def handle_signup_code_used(sender, **kwargs):
     result = kwargs.get("signup_code_result")
     try:
         invite = result.signup_code.joininvitation
@@ -102,8 +102,8 @@ def process_used_signup_code(sender, **kwargs):
         pass
 
 
-@receiver(process_email_confirmed, sender=EmailConfirmation)
-def process_email_confirmed(sender, **kwargs):
+@receiver(email_confirmed, sender=EmailConfirmation)
+def handle_email_confirmed(sender, **kwargs):
     email_address = kwargs.get("email_address")
     invites = JoinInvitation.objects.filter(
         to_user__isnull=True,
