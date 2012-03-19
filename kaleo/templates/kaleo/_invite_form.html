@@ -1,11 +1,13 @@
-{% load uni_form_tags %}
+{% load bootstrap_tags %}
 <div id="invitation-form-messages"></div>
 <div class="invitation_form">
     {% if user.invitationstat.can_send %}
         <form action="{% url kaleo_invite %}" method="POST" accept-charset="utf-8">
             {% csrf_token %}
-            {{ form|as_uni_form }}
-            <p><input type="submit" value="Invite"></p>
+            {{ form|as_bootstrap }}
+            <div class="form-actions">
+                <input type="submit" value="Invite" class="btn btn-primary">
+            </div>
         </form>
     {% else %}
         <p>You do not have any invitations currrently.</p>

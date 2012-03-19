@@ -29,27 +29,20 @@ Installation
 Dependencies
 ------------
 
-django-uni-form_
-^^^^^^^^^^^^^^^^
+pinax-theme-bootstrap_
+^^^^^^^^^^^^^^^^^^^^^^
 
 This is semi-optional as the only reason it is required is the included
-`_invite_form.html` renders the form through the `as_uni_form` filter. If
+`_invite_form.html` renders the form through the `as_bootstrap` filter. If
 you override this template in your project, you obviously remove this
 requirement at least in context of this app.
 
 
-django-email-confirmation_
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+django-user-accounts_
+^^^^^^^^^^^^^^^^^^^^^
 
-Used for linking people to invitations when they confirm email addresses.
-
-
-pinax.apps.signup_codes_
-^^^^^^^^^^^^^^^^^^^^^^^^
-
-This should be from Pinax==0.9a2.dev1019 or later. Used to manage the sending and processing of signup codes via email.
-
+Used for linking people to invitations when they confirm email addresses and
+sending and processing of signup codes via email.
 
 .. _django-uni-form: https://github.com/pydanny/django-uni-form
-.. _django-email-confirmation: http://github.com/pinax/django-email-confirmation
-.. _pinax.apps.signup_codes: http://github.com/pinax/pinax
+.. _django-user-accounts: http://github.com/pinax/django-user-accounts
