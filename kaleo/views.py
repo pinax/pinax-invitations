@@ -2,16 +2,16 @@ from django import http
 from django.utils import simplejson as json
 from django.views.decorators.http import require_http_methods
 
-from django.contrib.auth.decorators import login_required
-
 from account.models import EmailAddress
 from kaleo.forms import InviteForm
 from kaleo.models import JoinInvitation
 
 
-@login_required
 @require_http_methods(["POST"])
 def invite(request):
+    if not request.user.is_authenticated():
+        data = {"status": "ERROR", "message": "not authenticated"}
+        return http.HttpResponseBadRequest(json.dumps(data), content_type="application/json")
     form = InviteForm(request.POST)
     if form.is_valid():
         email = form.cleaned_data["email_address"]
