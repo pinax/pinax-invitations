@@ -22,4 +22,5 @@ Contents
  settings
  templates
  signals
+ management
  changelog
