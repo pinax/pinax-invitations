@@ -16,4 +16,4 @@ topoff_invites
 
 Makes sure all users have a certain number of invites.
 
-    manage.py topoff_invites 10  # Makes sure that all users have exactly 10 invites
+    manage.py topoff_invites 10  # Makes sure that all users have at least 10 invites
