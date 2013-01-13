@@ -1,8 +1,8 @@
-{% load bootstrap_tags %}
+{% load bootstrap_tags %}{% load url from future %}
 <div id="invitation-form-messages"></div>
 <div class="invitation_form">
     {% if user.invitationstat.can_send %}
-        <form action="{% url kaleo_invite %}" method="POST" accept-charset="utf-8">
+        <form action="{% url "kaleo_invite" %}" method="POST" accept-charset="utf-8">
             {% csrf_token %}
             {{ form|as_bootstrap }}
             <div class="form-actions">
