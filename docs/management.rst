@@ -11,6 +11,14 @@ Adds invites to all users with 0 invites remaining.
     manage.py add_invites 10  # Adds 10 new invites to all users with 0 invites remaining
 
 
+infinite_invites
+----------------
+
+Gives all users unlimited invites
+
+    manage.py infinite_invites
+
+
 topoff_invites
 --------------
 
