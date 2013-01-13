@@ -3,6 +3,7 @@ from django.utils import simplejson as json
 from django.views.decorators.http import require_http_methods
 
 from account.models import EmailAddress
+
 from kaleo.forms import InviteForm
 from kaleo.models import JoinInvitation
 

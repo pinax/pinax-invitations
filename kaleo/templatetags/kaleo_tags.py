@@ -15,9 +15,7 @@ class RemainingInvitesNode(template.Node):
         if len(bits) != 2:
             raise template.TemplateSyntaxError
         
-        return cls(
-            user = parser.compile_filter(bits[1])
-        )
+        return cls(user=parser.compile_filter(bits[1]))
     
     def __init__(self, user):
         self.user = user

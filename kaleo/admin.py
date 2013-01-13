@@ -11,8 +11,8 @@ class InvitationStatAdmin(admin.ModelAdmin):
 
 
 admin.site.register(JoinInvitation,
-    list_display = ["from_user", "to_user", "sent", "status", "to_user_email"],
-    list_filter = ["sent", "status"],
-    search_fields = ["from_user__username"]
+    list_display=["from_user", "to_user", "sent", "status", "to_user_email"],
+    list_filter=["sent", "status"],
+    search_fields=["from_user__username"]
 )
 admin.site.register(InvitationStat, InvitationStatAdmin)
