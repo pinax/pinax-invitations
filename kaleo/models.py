@@ -1,17 +1,15 @@
 from django.db import models
-from django.db.models.signals import post_save
 from django.conf import settings
-from django.dispatch import receiver
 from django.utils import timezone
 
 from django.contrib.auth.models import User
 
-from account.models import SignupCode, SignupCodeResult, EmailConfirmation
-from account.signals import signup_code_used, email_confirmed
-from kaleo.signals import invite_sent, invite_accepted
+from account.models import SignupCode
+
+from kaleo.signals import invite_sent
 
 
-DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168) # 168 Hours = 7 Days
+DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168)  # 168 Hours = 7 Days
 DEFAULT_INVITE_ALLOCATION = getattr(settings, "KALEO_DEFAULT_INVITE_ALLOCATION", 0)
 
 
@@ -50,7 +48,7 @@ class JoinInvitation(models.Model):
             email=to_email,
             inviter=from_user,
             expiry=DEFAULT_INVITE_EXPIRATION,
-            check_exists=False # before we are called caller must check for existence
+            check_exists=False  # before we are called caller must check for existence
         )
         signup_code.save()
         join = cls.objects.create(
@@ -84,39 +82,3 @@ class InvitationStat(models.Model):
             return True
         return self.invites_allocated > self.invites_sent
     can_send.boolean = True
-
-
-@receiver(signup_code_used, sender=SignupCodeResult)
-def handle_signup_code_used(sender, **kwargs):
-    result = kwargs.get("signup_code_result")
-    try:
-        invite = result.signup_code.joininvitation
-        invite.to_user = result.user
-        invite.status = JoinInvitation.STATUS_ACCEPTED
-        invite.save()
-        stat = invite.from_user.invitationstat
-        stat.invites_accepted += 1
-        stat.save()
-        invite_accepted.send(sender=JoinInvitation, invitation=invite)
-    except JoinInvitation.DoesNotExist:
-        pass
-
-
-@receiver(email_confirmed, sender=EmailConfirmation)
-def handle_email_confirmed(sender, **kwargs):
-    email_address = kwargs.get("email_address")
-    invites = JoinInvitation.objects.filter(
-        to_user__isnull=True,
-        signup_code__email=email_address.email
-    )
-    for invite in invites:
-        invite.to_user = email_address.user
-        invite.status = JoinInvitation.STATUS_JOINED_INDEPENDENTLY
-        invite.save()
-
-
-@receiver(post_save, sender=User)
-def create_stat(sender, instance=None, **kwargs):
-    if instance is None:
-        return
-    InvitationStat.objects.get_or_create(user=instance)

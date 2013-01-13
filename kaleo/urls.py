@@ -1,5 +1,7 @@
 from django.conf.urls.defaults import url, patterns
 
+import kaleo.receivers
+
 from kaleo.views import invite
 
 
