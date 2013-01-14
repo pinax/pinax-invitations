@@ -4,6 +4,14 @@
 CHANGELOG
 =========
 
+1.0
+===
+
+* translated templates
+* replaced `remaining_invites` template tag with `invites_remaining` inclusion template tag
+* invite view is now bootstrap-ajax compatible
+
+
 0.4
 ===
 
