@@ -28,26 +28,9 @@ showed the user if they were logged in or note you could have::
 
     {% load kaleo_tags %}
     
-    <span class="invitations_remaining">
-        ({% remaining_invites user %})
-    </span>
+    {% invites_remaining user %}
 
 
-And then a bit of jQuery (this assumes use of the jquery.form plugin)::
+You'll then need to include bootstrap-ajax::
 
-    $(function () {
-        $('.invites form').ajaxForm(function(data) {
-            if (data.status == "OK") {
-                $('#invitation-form-messages').html("<p>Invitation sent to " + data.email + "</p>");
-                $('.empty-invites').remove();
-                $('.invite-list').append("<li>" + data.email + "</li>");
-                $('.invites form input[type=text]').val("");
-                $('.invitations_remaining').html("(" + data.invitations_remaining + ")");
-                if (data.invitations_remaining == 0) {
-                    $('.invitation_form form').hide();
-                }
-            } else {
-                $('#invitation-form-messages').html(data.errors);
-            }
-        });
-    });
+    <script src="{% static "js/bootstrap-ajax.js" %}"></script>

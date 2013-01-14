@@ -29,6 +29,14 @@ Installation
 Dependencies
 ------------
 
+bootstrap-ajax_
+^^^^^^^^^^^^^^^
+
+This is used to enable the markup based ajax. You can certain wire up your
+own AJAX handling if you prefer to use something else. However, including
+this script will just have things work out of the box.
+
+
 pinax-theme-bootstrap_
 ^^^^^^^^^^^^^^^^^^^^^^
 
@@ -44,5 +52,7 @@ django-user-accounts_
 Used for linking people to invitations when they confirm email addresses and
 sending and processing of signup codes via email.
 
-.. _django-uni-form: https://github.com/pydanny/django-uni-form
+
+.. _bootstrap-ajax: http://github.com/eldarion/bootstrap-ajax
+.. _pinax-theme-bootstrap: http://github.com/pinax/pinax-theme-bootstrap
 .. _django-user-accounts: http://github.com/pinax/django-user-accounts

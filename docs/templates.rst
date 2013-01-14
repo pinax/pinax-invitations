@@ -19,3 +19,9 @@ _invited.html
 
 A simple unordered list of people you have invited that is linked to their
 profile when they join the site.
+
+
+_invites_remaining.html
+-----------------------
+
+A fragment to display how many invites a particular user has.
