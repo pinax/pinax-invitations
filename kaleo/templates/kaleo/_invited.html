@@ -1,6 +1,7 @@
+{% load i18n %}
 {% load kaleo_tags %}
 
-<ul class="invite-list">
+<ul class="kaleo-invites-sent">
     {% for invited in invited_list %}
         <li class="{{ invited|status_class }}">
             {% if invited.to_user %}
@@ -12,6 +13,8 @@
             {% endif %}
         </li>
     {% empty %}
-        <li class="empty-invites">You have not sent any invitations yet.</li>
+        <li class="empty-invites">
+            {% trans "You have not sent any invitations yet." %}
+        </li>
     {% endfor %}
 </ul>
