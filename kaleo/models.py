@@ -72,6 +72,32 @@ class InvitationStat(models.Model):
     invites_allocated = models.IntegerField(default=DEFAULT_INVITE_ALLOCATION)
     invites_accepted = models.IntegerField(default=0)
     
+    @classmethod
+    def add_invites_to_user(cls, user, amount):
+        stat, _ = InvitationStat.objects.get_or_create(user=user)
+        stat.invites_allocated = -1
+        stat.save()
+    
+    @classmethod
+    def add_invites(cls, amount):
+        for user in User.objects.all():
+            cls.add_invites_to_user(user, amount)
+    
+    @classmethod
+    def topoff_user(cls, user, amount):
+        "Makes sure user has a certain number of invites"
+        stat, _ = cls.objects.get_or_create(user=user)
+        remaining = stat.invites_remaining()
+        if remaining < amount:
+            stat.invites_allocated += (amount - remaining)
+            stat.save()
+    
+    @classmethod
+    def topoff(cls, amount):
+        "Makes sure all users have a certain number of invites"
+        for user in User.objects.all():
+            cls.topoff_user(user, amount)
+    
     def invites_remaining(self):
         if self.invites_allocated == -1:
             return -1

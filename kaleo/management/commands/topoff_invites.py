@@ -2,8 +2,6 @@ import sys
 
 from django.core.management.base import BaseCommand
 
-from django.contrib.auth.models import User
-
 from kaleo.models import InvitationStat
 
 
@@ -19,9 +17,4 @@ class Command(BaseCommand):
         except ValueError:
             sys.exit("The argument for number of invites must be an integer.")
         
-        for user in User.objects.all():
-            stat, _ = InvitationStat.objects.get_or_create(user=user)
-            remaining = stat.invites_remaining()
-            if remaining < num_of_invites:
-                stat.invites_allocated += (num_of_invites - remaining)
-                stat.save()
+        InvitationStat.topoff(num_of_invites)
