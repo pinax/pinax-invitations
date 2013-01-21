@@ -4,6 +4,12 @@
 CHANGELOG
 =========
 
+1.1
+===
+
+* added a set of views to handle managing invites via ajax
+
+
 1.0
 ===
 

@@ -23,4 +23,5 @@ Contents
  templates
  signals
  management
+ views
  changelog
