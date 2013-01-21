@@ -1,14 +1,17 @@
 import json
 
-from django import http
+from django.http import HttpResponse
+from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from django.template.loader import render_to_string
 from django.views.decorators.http import require_POST
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.decorators import permission_required
+from django.contrib.auth.models import User
 
 from kaleo.forms import InviteForm
-from kaleo.models import JoinInvitation
+from kaleo.models import JoinInvitation, InvitationStat
 
 
 @login_required
@@ -36,4 +39,62 @@ def invite(request):
             )
         }
     }
-    return http.HttpResponse(json.dumps(data), content_type="application/json")
+    return HttpResponse(json.dumps(data), content_type="application/json")
+
+
+@login_required
+@permission_required("kaleo.manage_invites", raise_exception=True)
+def invite_stat(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    return HttpResponse(json.dumps({
+        "html": render_to_string("kaleo/_invite_stat.html", {
+                "stat": user.invitationstat
+            }, context_instance=RequestContext(request)
+        )
+    }), content_type="application/json")
+
+
+@login_required
+@permission_required("kaleo.manage_invites", raise_exception=True)
+@require_POST
+def topoff_all(request):
+    amount = int(request.POST.get("amount"))
+    InvitationStat.topoff(amount)
+    return HttpResponse(json.dumps({
+        "inner-fragments": {".invite-total": amount}
+    }), content_type="application/json")
+
+
+@login_required
+@permission_required("kaleo.manage_invites", raise_exception=True)
+@require_POST
+def topoff_user(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    amount = int(request.POST.get("amount"))
+    InvitationStat.topoff_user(user=user, amount=amount)
+    return HttpResponse(json.dumps({
+        "html": amount
+    }), content_type="application/json")
+
+
+@login_required
+@permission_required("kaleo.manage_invites", raise_exception=True)
+@require_POST
+def addto_all(request):
+    amount = int(request.POST.get("amount"))
+    InvitationStat.add_invites(amount)
+    return HttpResponse(json.dumps({
+        "inner-fragments": {".amount-added": amount}
+    }), content_type="application/json")
+
+
+@login_required
+@permission_required("kaleo.manage_invites", raise_exception=True)
+@require_POST
+def addto_user(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    amount = int(request.POST.get("amount"))
+    InvitationStat.add_invites_to_user(user=user, amount=amount)
+    return HttpResponse(json.dumps({
+        "html": amount
+    }), content_type="application/json")
