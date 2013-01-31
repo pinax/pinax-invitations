@@ -22,14 +22,10 @@ def handle_signup_code_used(sender, **kwargs):
 @receiver(email_confirmed, sender=EmailConfirmation)
 def handle_email_confirmed(sender, **kwargs):
     email_address = kwargs.get("email_address")
-    invites = JoinInvitation.objects.filter(
-        to_user__isnull=True,
-        signup_code__email=email_address.email
+    JoinInvitation.process_independent_joins(
+        user=email_address.user,
+        email=email_address.email
     )
-    for invite in invites:
-        invite.to_user = email_address.user
-        invite.status = JoinInvitation.STATUS_JOINED_INDEPENDENTLY
-        invite.save()
 
 
 @receiver(post_save, sender=User)

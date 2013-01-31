@@ -6,7 +6,7 @@ from django.contrib.auth.models import User
 
 from account.models import SignupCode
 
-from kaleo.signals import invite_sent, invite_accepted
+from kaleo.signals import invite_sent, joined_independently, invite_accepted
 
 
 DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168)  # 168 Hours = 7 Days
@@ -45,6 +45,17 @@ class JoinInvitation(models.Model):
         self.save()
         self.from_user.invitationstat.increment_accepted()
         invite_accepted.send(sender=JoinInvitation, invitation=self)
+    
+    @classmethod
+    def process_independent_joins(cls, user, email):
+        invites = cls.objects.filter(
+            to_user__isnull=True,
+            signup_code__email=email
+        )
+        for invite in invites:
+            invite.to_user = user
+            invite.status = cls.STATUS_JOINED_INDEPENDENTLY
+            invite.save()
     @classmethod
     def invite(cls, from_user, to_email, message=None):
         if not from_user.invitationstat.can_send():
