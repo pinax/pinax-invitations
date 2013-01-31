@@ -19,3 +19,10 @@ kaleo.signals.invite_accepted
 
 This signal is sent immediately after the acceptance of the invitation
 has been processed.
+
+
+kaleo.signals.joined_independently
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+This signal is sent when someone signs up using the same email address
+that exist for an invitation and they confirm that email address.

@@ -56,6 +56,8 @@ class JoinInvitation(models.Model):
             invite.to_user = user
             invite.status = cls.STATUS_JOINED_INDEPENDENTLY
             invite.save()
+            joined_independently.send(sender=cls, invitation=invite)
+    
     @classmethod
     def invite(cls, from_user, to_email, message=None):
         if not from_user.invitationstat.can_send():
