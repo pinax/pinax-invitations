@@ -7,7 +7,6 @@ from account.models import SignupCodeResult, EmailConfirmation
 from account.signals import signup_code_used, email_confirmed
 
 from kaleo.models import JoinInvitation, InvitationStat
-from kaleo.signals import invite_accepted
 
 
 @receiver(signup_code_used, sender=SignupCodeResult)
@@ -15,13 +14,7 @@ def handle_signup_code_used(sender, **kwargs):
     result = kwargs.get("signup_code_result")
     try:
         invite = result.signup_code.joininvitation
-        invite.to_user = result.user
-        invite.status = JoinInvitation.STATUS_ACCEPTED
-        invite.save()
-        stat = invite.from_user.invitationstat
-        stat.invites_accepted += 1
-        stat.save()
-        invite_accepted.send(sender=JoinInvitation, invitation=invite)
+        invite.accept(result.user)
     except JoinInvitation.DoesNotExist:
         pass
 
