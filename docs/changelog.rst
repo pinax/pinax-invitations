@@ -4,6 +4,15 @@
 CHANGELOG
 =========
 
+1.2
+===
+
+* added a `joined_independently` signal
+* refactored logic that existed in signal receivers to model methods
+* fixed bug in add invites functionality that would set everyone to have unlimited invites
+* fixed bug in top off invites functionality that removed unlimited invites from those who had it
+
+
 1.1
 ===
 
