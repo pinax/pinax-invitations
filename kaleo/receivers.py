@@ -4,7 +4,7 @@ from django.dispatch import receiver
 from django.contrib.auth.models import User
 
 from account.models import SignupCodeResult, EmailConfirmation
-from account.signals import signup_code_used, email_confirmed
+from account.signals import signup_code_used, email_confirmed, user_signed_up
 
 from kaleo.models import JoinInvitation, InvitationStat
 
@@ -26,6 +26,16 @@ def handle_email_confirmed(sender, **kwargs):
         user=email_address.user,
         email=email_address.email
     )
+
+
+@receiver(user_signed_up)
+def handle_user_signup(sender, user, form, **kwargs):
+    email_qs = user.emailaddress_set.filter(email=user.email, verified=True)
+    if user.is_active and email_qs.exists():
+        JoinInvitation.process_independent_joins(
+            user=user,
+            email=user.email
+        )
 
 
 @receiver(post_save, sender=User)
