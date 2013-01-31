@@ -7,10 +7,24 @@ CHANGELOG
 1.2
 ===
 
+* BACKWARD INCOMPATIBILITY: removed the import of `kaleo.receivers` from `urls.py`
 * added a `joined_independently` signal
 * refactored logic that existed in signal receivers to model methods
 * fixed bug in add invites functionality that would set everyone to have unlimited invites
 * fixed bug in top off invites functionality that removed unlimited invites from those who had it
+
+Backward Inccompatibilities
+---------------------------
+
+Importing things into `models.py` or `urls.py` that have nothing to do with either of those
+modules has been a bit of a hack for awhile. Pinax is moving to a more explicit approach where
+these things are hooked up at the project level. In fact, Pinax starter projects will support
+`receivers.py` getting hooked up at runtime automatically through the use of a `startup.py`
+modeule that has code that gets executed in the `wsgi.py` and `manage.py`.
+
+See how it all works in this commit:
+
+https://github.com/pinax/pinax-project-account/commit/364795cdd683574ab6a5093be34b9d47a3487bea
 
 
 1.1
