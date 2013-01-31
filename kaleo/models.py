@@ -98,7 +98,7 @@ class InvitationStat(models.Model):
         "Makes sure user has a certain number of invites"
         stat, _ = cls.objects.get_or_create(user=user)
         remaining = stat.invites_remaining()
-        if remaining < amount:
+        if remaining != -1 and remaining < amount:
             stat.invites_allocated += (amount - remaining)
             stat.save()
     
