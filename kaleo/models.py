@@ -85,8 +85,9 @@ class InvitationStat(models.Model):
     @classmethod
     def add_invites_to_user(cls, user, amount):
         stat, _ = InvitationStat.objects.get_or_create(user=user)
-        stat.invites_allocated = -1
-        stat.save()
+        if stat.invites_allocated != -1:
+            stat.invites_allocated += amount
+            stat.save()
     
     @classmethod
     def add_invites(cls, amount):
