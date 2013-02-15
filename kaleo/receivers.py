@@ -1,7 +1,9 @@
 from django.db.models.signals import post_save
 from django.dispatch import receiver
 
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+from .compat import get_user_model
+User = get_user_model()
 
 from account.models import SignupCodeResult, EmailConfirmation
 from account.signals import signup_code_used, email_confirmed, user_signed_up
