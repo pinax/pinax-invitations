@@ -2,15 +2,16 @@ from django.db import models
 from django.conf import settings
 from django.utils import timezone
 
-from django.contrib.auth.models import User
-
 from account.models import SignupCode
 
 from kaleo.signals import invite_sent, joined_independently, invite_accepted
+from .compat import get_user_model
 
 
 DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168)  # 168 Hours = 7 Days
 DEFAULT_INVITE_ALLOCATION = getattr(settings, "KALEO_DEFAULT_INVITE_ALLOCATION", 0)
+
+AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
 
 
 class NotEnoughInvitationsError(Exception):
@@ -29,8 +30,8 @@ class JoinInvitation(models.Model):
         (STATUS_JOINED_INDEPENDENTLY, "Joined Independently")
     ]
     
-    from_user = models.ForeignKey(User, related_name="invites_sent")
-    to_user = models.ForeignKey(User, null=True, related_name="invites_received")
+    from_user = models.ForeignKey(AUTH_USER_MODEL, related_name="invites_sent")
+    to_user = models.ForeignKey(AUTH_USER_MODEL, null=True, related_name="invites_received")
     message = models.TextField(null=True)
     sent = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(choices=INVITE_STATUS_CHOICES)
@@ -86,7 +87,7 @@ class JoinInvitation(models.Model):
 
 class InvitationStat(models.Model):
     
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(AUTH_USER_MODEL)
     invites_sent = models.IntegerField(default=0)
     invites_allocated = models.IntegerField(default=DEFAULT_INVITE_ALLOCATION)
     invites_accepted = models.IntegerField(default=0)
@@ -104,7 +105,7 @@ class InvitationStat(models.Model):
     
     @classmethod
     def add_invites(cls, amount):
-        for user in User.objects.all():
+        for user in get_user_model().objects.all():
             cls.add_invites_to_user(user, amount)
     
     @classmethod
@@ -119,7 +120,7 @@ class InvitationStat(models.Model):
     @classmethod
     def topoff(cls, amount):
         "Makes sure all users have a certain number of invites"
-        for user in User.objects.all():
+        for user in get_user_model().objects.all():
             cls.topoff_user(user, amount)
     
     def invites_remaining(self):

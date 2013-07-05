@@ -8,10 +8,11 @@ from django.views.decorators.http import require_POST
 
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.decorators import permission_required
-from django.contrib.auth.models import User
 
 from kaleo.forms import InviteForm
 from kaleo.models import JoinInvitation, InvitationStat
+from .compat import get_user_model
+User = get_user_model()
 
 
 @login_required
