@@ -7,6 +7,7 @@ CHANGELOG
 1.2
 ===
 
+* Django 1.5 custom user model support
 * BACKWARD INCOMPATIBILITY: removed the import of `kaleo.receivers` from `urls.py`
 * added a `joined_independently` signal
 * refactored logic that existed in signal receivers to model methods
