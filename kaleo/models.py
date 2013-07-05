@@ -4,14 +4,13 @@ from django.utils import timezone
 
 from account.models import SignupCode
 
+from kaleo.compat import get_user_model
 from kaleo.signals import invite_sent, joined_independently, invite_accepted
-from .compat import get_user_model
 
 
 DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168)  # 168 Hours = 7 Days
 DEFAULT_INVITE_ALLOCATION = getattr(settings, "KALEO_DEFAULT_INVITE_ALLOCATION", 0)
-
-AUTH_USER_MODEL = getattr(settings, 'AUTH_USER_MODEL', 'auth.User')
+AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class NotEnoughInvitationsError(Exception):

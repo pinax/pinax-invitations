@@ -1,9 +1,7 @@
-import sys
-
 from django.core.management.base import BaseCommand
 
+from kaleo.compat import get_user_model
 from kaleo.models import InvitationStat
-from .compat import get_user_model
 
 
 class Command(BaseCommand):

@@ -10,7 +10,8 @@ class InvitationStatAdmin(admin.ModelAdmin):
     list_filter = ["invites_sent", "invites_accepted"]
 
 
-admin.site.register(JoinInvitation,
+admin.site.register(
+    JoinInvitation,
     list_display=["from_user", "to_user", "sent", "status", "to_user_email"],
     list_filter=["sent", "status"],
     search_fields=["from_user__username"]
