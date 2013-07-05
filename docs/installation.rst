@@ -29,7 +29,7 @@ Installation
 Dependencies
 ------------
 
-bootstrap-ajax_
+eldarion-ajax_
 ^^^^^^^^^^^^^^^
 
 This is used to enable the markup based ajax. You can certain wire up your
