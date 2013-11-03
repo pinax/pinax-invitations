@@ -1,5 +1,5 @@
 {% load i18n %}
-{% load bootstrap_tags %}
+{% load bootstrap %}
 {% load url from future %}
 
 <div class="kaleo-invites-form">
@@ -10,7 +10,7 @@
               method="POST"
               accept-charset="utf-8">
             {% csrf_token %}
-            {{ form|as_bootstrap }}
+            {{ form|bootstrap }}
             <div class="form-actions">
                 <button type="submit" class="btn btn-primary">
                     {% trans "Invite" %}
