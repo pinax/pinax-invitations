@@ -14,9 +14,6 @@ from kaleo.forms import InviteForm
 from kaleo.models import JoinInvitation, InvitationStat
 
 
-User = get_user_model()
-
-
 @login_required
 @require_POST
 def invite(request):
@@ -51,7 +48,7 @@ def invite(request):
 @login_required
 @permission_required("kaleo.manage_invites", raise_exception=True)
 def invite_stat(request, pk):
-    user = get_object_or_404(User, pk=pk)
+    user = get_object_or_404(get_user_model(), pk=pk)
     return HttpResponse(json.dumps({
         "html": render_to_string(
             "kaleo/_invite_stat.html", {
@@ -76,7 +73,7 @@ def topoff_all(request):
 @permission_required("kaleo.manage_invites", raise_exception=True)
 @require_POST
 def topoff_user(request, pk):
-    user = get_object_or_404(User, pk=pk)
+    user = get_object_or_404(get_user_model(), pk=pk)
     amount = int(request.POST.get("amount"))
     InvitationStat.topoff_user(user=user, amount=amount)
     return HttpResponse(json.dumps({
@@ -99,7 +96,7 @@ def addto_all(request):
 @permission_required("kaleo.manage_invites", raise_exception=True)
 @require_POST
 def addto_user(request, pk):
-    user = get_object_or_404(User, pk=pk)
+    user = get_object_or_404(get_user_model(), pk=pk)
     amount = int(request.POST.get("amount"))
     InvitationStat.add_invites_to_user(user=user, amount=amount)
     return HttpResponse(json.dumps({

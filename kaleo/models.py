@@ -1,16 +1,11 @@
 from django.db import models
-from django.conf import settings
 from django.utils import timezone
 
 from account.models import SignupCode
 
-from kaleo.compat import get_user_model
+from kaleo.compat import get_user_model, AUTH_USER_MODEL
+from kaleo.conf import settings
 from kaleo.signals import invite_sent, joined_independently, invite_accepted
-
-
-DEFAULT_INVITE_EXPIRATION = getattr(settings, "KALEO_DEFAULT_EXPIRATION", 168)  # 168 Hours = 7 Days
-DEFAULT_INVITE_ALLOCATION = getattr(settings, "KALEO_DEFAULT_INVITE_ALLOCATION", 0)
-AUTH_USER_MODEL = getattr(settings, "AUTH_USER_MODEL", "auth.User")
 
 
 class NotEnoughInvitationsError(Exception):
@@ -66,7 +61,7 @@ class JoinInvitation(models.Model):
         signup_code = SignupCode.create(
             email=to_email,
             inviter=from_user,
-            expiry=DEFAULT_INVITE_EXPIRATION,
+            expiry=settings.KALEO_DEFAULT_EXPIRATION,
             check_exists=False  # before we are called caller must check for existence
         )
         signup_code.save()
@@ -88,7 +83,7 @@ class InvitationStat(models.Model):
     
     user = models.OneToOneField(AUTH_USER_MODEL)
     invites_sent = models.IntegerField(default=0)
-    invites_allocated = models.IntegerField(default=DEFAULT_INVITE_ALLOCATION)
+    invites_allocated = models.IntegerField(default=settings.KALEO_DEFAULT_INVITE_ALLOCATION)
     invites_accepted = models.IntegerField(default=0)
     
     def increment_accepted(self):
