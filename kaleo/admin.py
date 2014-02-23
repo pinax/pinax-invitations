@@ -6,7 +6,14 @@ from kaleo.models import JoinInvitation, InvitationStat
 class InvitationStatAdmin(admin.ModelAdmin):
     raw_id_fields = ["user"]
     readonly_fields = ["invites_sent", "invites_accepted"]
-    list_display = ["user", "invites_sent", "invites_accepted", "invites_allocated", "invites_remaining", "can_send"]
+    list_display = [
+        "user",
+        "invites_sent",
+        "invites_accepted",
+        "invites_allocated",
+        "invites_remaining",
+        "can_send"
+    ]
     list_filter = ["invites_sent", "invites_accepted"]
 
 

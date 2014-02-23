@@ -8,11 +8,11 @@ from kaleo.models import JoinInvitation
 
 class InviteForm(forms.Form):
     email_address = forms.EmailField()
-    
+
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")
         super(InviteForm, self).__init__(*args, **kwargs)
-    
+
     def clean_email_address(self):
         email = self.cleaned_data["email_address"]
         if EmailAddress.objects.filter(email=email, verified=True).exists():

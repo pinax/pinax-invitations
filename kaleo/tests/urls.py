@@ -8,5 +8,3 @@ urlpatterns = patterns(
     "",
     (r"^", include("kaleo.urls")),
 )
-
-
