@@ -1,4 +1,4 @@
 [run]
-source = kaleo 
+source = kaleo
 omit = kaleo/tests/*
 branch = 1
