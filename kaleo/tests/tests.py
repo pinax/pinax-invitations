@@ -2,6 +2,8 @@ from django.test import TestCase
 
 from django.contrib.auth.models import User
 
+import kaleo.receivers  # noqa
+
 from account.models import SignupCode
 from kaleo.models import JoinInvitation
 
