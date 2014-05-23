@@ -54,7 +54,7 @@ class JoinInvitation(models.Model):
             joined_independently.send(sender=cls, invitation=invite)
 
     @classmethod
-    def invite(cls, from_user, to_email, message=None):
+    def invite(cls, from_user, to_email, message=None, send=True):
         if not from_user.invitationstat.can_send():
             raise NotEnoughInvitationsError()
 
@@ -71,11 +71,16 @@ class JoinInvitation(models.Model):
             status=JoinInvitation.STATUS_SENT,
             signup_code=signup_code
         )
-        signup_code.send()
-        stat = from_user.invitationstat
-        stat.invites_sent += 1
-        stat.save()
-        invite_sent.send(sender=cls, invitation=join)
+        def send_invite(*args, **kwargs):
+            signup_code.send(*args, **kwargs)
+            stat = from_user.invitationstat
+            stat.invites_sent += 1
+            stat.save()
+            invite_sent.send(sender=cls, invitation=join)
+        if send:
+            send_invite()
+        else:
+            join.send_invite = send_invite
         return join
 
 
