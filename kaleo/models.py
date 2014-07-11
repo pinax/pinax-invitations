@@ -71,9 +71,12 @@ class JoinInvitation(models.Model):
             status=JoinInvitation.STATUS_SENT,
             signup_code=signup_code
         )
+
         def send_invite(*args, **kwargs):
             signup_code.send(*args, **kwargs)
-            InvitationStat.objects.filter(user=from_user).update(invites_sent=models.F("invites_sent") + 1)
+            InvitationStat.objects.filter(user=from_user).update(
+                invites_sent=models.F("invites_sent") + 1
+            )
             invite_sent.send(sender=cls, invitation=join)
         if send:
             send_invite()
