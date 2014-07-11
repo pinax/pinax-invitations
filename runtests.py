@@ -42,7 +42,7 @@ def runtests(*test_args):
     try:
         from django.test.runner import DiscoverRunner
         runner_class = DiscoverRunner
-        test_args = ["biblion.tests"]
+        test_args = ["kaleo.tests"]
     except ImportError:
         from django.test.simple import DjangoTestSuiteRunner
         runner_class = DjangoTestSuiteRunner
