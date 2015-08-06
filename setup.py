@@ -10,44 +10,36 @@ def read(*parts):
         return fp.read()
 
 
-PACKAGE = "kaleo"
-NAME = "kaleo"
-DESCRIPTION = "a user to user join invitations app"
-AUTHOR = "Eldarion"
-AUTHOR_EMAIL = "paltman@eldarion.com"
-URL = "http://github.com/eldarion/kaleo"
-VERSION = __import__(PACKAGE).__version__
-
-
 setup(
-    name=NAME,
-    version=VERSION,
-    description=DESCRIPTION,
+    author="Pinax Team",
+    author_email="team@pinaxproject.com",
+    description="a user to user join invitations app",
+    name="pinax-invitations",
     long_description=read("README.rst"),
-    url=URL,
-    license="BSD",
+    version="2.0.0",
+    url="http://github.com/pinax/pianx-invitations/",
+    license="MIT",
     packages=find_packages(),
+    package_data={
+        "invitations": []
+    },
+    test_suite="runtests.runtests",
     install_requires=[
-        "django-appconf>=0.5",
-        "django-user-accounts>=1.0c4"
+        "django-appconf>=1.0.1",
+        "django-user-accounts>=1.1"
     ],
     tests_require=[
-        "Django>=1.4",
     ],
-    test_suite="runtests.runtests",
     classifiers=[
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
+        "Framework :: Django",
         "Intended Audience :: Developers",
-        "License :: OSI Approved :: BSD License",
+        "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
         "Programming Language :: Python",
-        "Framework :: Django",
-        "Programming Language :: Python",
-        "Programming Language :: Python :: 2.6",
-        "Programming Language :: Python :: 2.7",
-        "Programming Language :: Python :: 3.2",
-        "Programming Language :: Python :: 3.3",
+        "Programming Language :: Python :: 2",
+        "Programming Language :: Python :: 3",
         "Topic :: Software Development :: Libraries :: Python Modules",
     ],
     zip_safe=False

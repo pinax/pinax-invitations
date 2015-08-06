@@ -13,9 +13,10 @@ DEFAULT_SETTINGS = dict(
         "django.contrib.contenttypes",
         "django.contrib.sites",
         "account",
-        "kaleo",
-        "kaleo.tests"
+        "pinax.invitations",
+        "pinax.invitations.tests"
     ],
+    MIDDLEWARE_CLASSES=[],
     DATABASES={
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
@@ -23,7 +24,7 @@ DEFAULT_SETTINGS = dict(
         }
     },
     SITE_ID=1,
-    ROOT_URLCONF="kaleo.tests.urls",
+    ROOT_URLCONF="pinax.invitations.tests.urls",
     SECRET_KEY="notasecret",
 )
 
@@ -32,9 +33,7 @@ def runtests(*test_args):
     if not settings.configured:
         settings.configure(**DEFAULT_SETTINGS)
 
-    # Compatibility with Django 1.7's stricter initialization
-    if hasattr(django, "setup"):
-        django.setup()
+    django.setup()
 
     parent = os.path.dirname(os.path.abspath(__file__))
     sys.path.insert(0, parent)
@@ -42,14 +41,13 @@ def runtests(*test_args):
     try:
         from django.test.runner import DiscoverRunner
         runner_class = DiscoverRunner
-        test_args = ["kaleo.tests"]
+        test_args = ["pinax.invitations.tests"]
     except ImportError:
         from django.test.simple import DjangoTestSuiteRunner
         runner_class = DjangoTestSuiteRunner
         test_args = ["tests"]
 
-    failures = runner_class(
-        verbosity=1, interactive=True, failfast=False).run_tests(test_args)
+    failures = runner_class(verbosity=1, interactive=True, failfast=False).run_tests(test_args)
     sys.exit(failures)
 
 

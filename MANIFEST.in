@@ -1,2 +1,5 @@
+include AUTHORS
+include LICENSE
 include README.rst
-recursive-include kaleo/templates *.html
+recursive-include pinax/invitations/static *
+recursive-include pinax/invitations/templates *

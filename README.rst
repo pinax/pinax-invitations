@@ -1,34 +1,61 @@
-kaleo
-=====
-
-.. image:: https://img.shields.io/travis/eldarion/kaleo.svg
-    :target: https://travis-ci.org/eldarion/kaleo
-
-.. image:: https://img.shields.io/coveralls/eldarion/kaleo.svg
-    :target: https://coveralls.io/r/eldarion/kaleo
-
-.. image:: https://img.shields.io/pypi/dm/kaleo.svg
-    :target:  https://pypi.python.org/pypi/kaleo/
-
-.. image:: https://img.shields.io/pypi/v/kaleo.svg
-    :target:  https://pypi.python.org/pypi/kaleo/
-
-.. image:: https://img.shields.io/badge/license-BSD-blue.svg
-    :target:  https://pypi.python.org/pypi/kaleo/
+pinax-starter-app
+=================
 
 
-Provides a site with user to user invitations for Pinax based sites.
+Quickly setup the scaffolding for your django app.
+
+What you get:
+
+* test infrastructure
+* Travis configuration with coveralls
+* documentation instrastructure
+* MIT LICENSE
+* setup.py
 
 
-Documentation
--------------
+Getting Started
+================
 
-Documentation can be found online at http://kaleo.readthedocs.org/.
+Execute::
+
+    pip install Django
+    django-admin.py startapp --template=https://github.com/pinax/pinax-starter-app/zipball/master --extension=py,rst,in,sh,rc,yml,ini,coveragerc <project_name>
 
 
-Commercial Support
-------------------
+After you are running you have a fresh app, first update this readme by removing
+everything above and including this line and unindenting everything below this line. Also
+remember to edit the ``<user_or_org_name>`` in the travis and coveralls badge/links::
 
-This app, and many others like it, have been built in support of many of Eldarion's
-own sites, and sites of our clients. We would love to help you on your next project
-so get in touch by dropping us a note at info@eldarion.com.
+    This app was developed as part of the Pinax ecosystem but is just a Django app
+    and can be used independently of other Pinax apps. To learn more about Pinax,
+    see http://pinaxproject.com/
+
+    pinax-invitations
+    ========================
+
+    .. image:: https://img.shields.io/travis/<user_or_org_name>/pinax-invitations.svg
+        :target: https://travis-ci.org/<user_or_org_name>/pinax-invitations
+
+    .. image:: https://img.shields.io/coveralls/<user_or_org_name>/pinax-invitations.svg
+        :target: https://coveralls.io/r/<user_or_org_name>/pinax-invitations
+
+    .. image:: https://img.shields.io/pypi/dm/pinax-invitations.svg
+        :target:  https://pypi.python.org/pypi/pinax-invitations/
+
+    .. image:: https://img.shields.io/pypi/v/pinax-invitations.svg
+        :target:  https://pypi.python.org/pypi/pinax-invitations/
+
+    .. image:: https://img.shields.io/badge/license-<license>-blue.svg
+        :target:  https://pypi.python.org/pypi/pinax-invitations/
+
+
+    Documentation can be found at http://docs.pinaxproject.com/pinax-invitations/
+
+
+    Running the Tests
+    ------------------------------------
+
+    ::
+
+        $ pip install detox
+        $ detox
