@@ -1,6 +1,7 @@
 pinax-starter-app
 =================
-
+.. image:: http://slack.pinaxproject.com/badge.svg
+   :target: http://slack.pinaxproject.com/
 
 Quickly setup the scaffolding for your django app.
 
