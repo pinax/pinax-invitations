@@ -1,5 +1,6 @@
 Pinax Invitations
 =================
+
 .. image:: http://slack.pinaxproject.com/badge.svg
    :target: http://slack.pinaxproject.com/
    
@@ -59,7 +60,7 @@ remember to edit the ``<user_or_org_name>`` in the travis and coveralls badge/li
 
 
 Running the Tests
-    ------------------------------------
+------------------
 
     ::
 
