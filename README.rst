@@ -4,8 +4,8 @@ Pinax Invitations
 .. image:: http://slack.pinaxproject.com/badge.svg
    :target: http://slack.pinaxproject.com/
    
-.. image:: https://img.shields.io/travis/pinax-invitations/pinax-invitations.svg
-   :target: https://travis-ci.org/pinax-invitations/pinax-invitations
+.. image:: https://img.shields.io/travis/pinax/pinax-invitations.svg
+   :target: https://travis-ci.org/pinax/pinax-invitations
 
 .. image:: https://img.shields.io/coveralls/pinax-invitations/pinax-invitations.svg
    :target: https://coveralls.io/r/pinax-invitations/pinax-invitations
