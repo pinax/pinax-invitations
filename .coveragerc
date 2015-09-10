@@ -1,4 +1,7 @@
 [run]
-source = kaleo
-omit = kaleo/tests/*
+source = pinax
+omit = pinax/invitations/tests/*,pinax/invitations/admin.py
 branch = 1
+
+[report]
+omit = pinax/invitations/tests/*,pinax/invitations/admin.py
