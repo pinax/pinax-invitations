@@ -26,7 +26,7 @@ setup(
     test_suite="runtests.runtests",
     install_requires=[
         "django-appconf>=1.0.1",
-        "django-user-accounts>=1.1"
+        "django-user-accounts>=1.2"
     ],
     tests_require=[
     ],
