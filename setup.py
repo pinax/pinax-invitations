@@ -17,7 +17,7 @@ setup(
     name="pinax-invitations",
     long_description=read("README.rst"),
     version="2.1.0.dev1",
-    url="http://github.com/pinax/pianx-invitations/",
+    url="http://github.com/pinax/pinax-invitations/",
     license="MIT",
     packages=find_packages(),
     package_data={
