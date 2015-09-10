@@ -7,8 +7,8 @@ Pinax Invitations
 .. image:: https://img.shields.io/travis/pinax/pinax-invitations.svg
    :target: https://travis-ci.org/pinax/pinax-invitations
 
-.. image:: https://img.shields.io/coveralls/pinax-invitations/pinax-invitations.svg
-   :target: https://coveralls.io/r/pinax-invitations/pinax-invitations
+.. image:: https://img.shields.io/coveralls/pinax/pinax-invitations.svg
+   :target: https://coveralls.io/r/pinax/pinax-invitations
 
 .. image:: https://img.shields.io/pypi/dm/pinax-invitations.svg
    :target:  https://pypi.python.org/pypi/pinax-invitations/
