@@ -1,6 +1,6 @@
+from django.contrib.auth import get_user_model
 from django.core.management.base import BaseCommand
 
-from pinax.invitations.compat import get_user_model
 from pinax.invitations.models import InvitationStat
 
 

@@ -1,9 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
 
 from account.models import SignupCode
 
-from .compat import get_user_model, AUTH_USER_MODEL
 from .conf import settings
 from .signals import invite_sent, joined_independently, invite_accepted
 
@@ -24,8 +24,8 @@ class JoinInvitation(models.Model):
         (STATUS_JOINED_INDEPENDENTLY, "Joined Independently")
     ]
 
-    from_user = models.ForeignKey(AUTH_USER_MODEL, related_name="invites_sent")
-    to_user = models.ForeignKey(AUTH_USER_MODEL, null=True, related_name="invites_received")
+    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="invites_sent")
+    to_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name="invites_received")
     message = models.TextField(null=True)
     sent = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(choices=INVITE_STATUS_CHOICES)
@@ -87,7 +87,7 @@ class JoinInvitation(models.Model):
 
 class InvitationStat(models.Model):
 
-    user = models.OneToOneField(AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL)
     invites_sent = models.IntegerField(default=0)
     invites_allocated = models.IntegerField(default=settings.PINAX_INVITATIONS_DEFAULT_INVITE_ALLOCATION)
     invites_accepted = models.IntegerField(default=0)

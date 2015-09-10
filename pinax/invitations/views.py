@@ -1,5 +1,6 @@
 import json
 
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
@@ -10,7 +11,6 @@ from django.contrib.auth.decorators import permission_required
 
 from account import login_required
 
-from .compat import get_user_model
 from .forms import InviteForm
 from .models import JoinInvitation, InvitationStat
 
