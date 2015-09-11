@@ -9,7 +9,7 @@ from django.views.decorators.http import require_POST
 
 from django.contrib.auth.decorators import permission_required
 
-from account import login_required
+from account.decorators import login_required
 
 from .forms import InviteForm
 from .models import JoinInvitation, InvitationStat
