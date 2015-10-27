@@ -57,7 +57,7 @@ Running the Tests
 Documentation
 --------------
 
-The pinax-invitations documentation can be found at http://docs.pinaxproject.com/pinax-invitations/.
+The pinax-invitations documentation is currently under construction. If you would like to help us write documentation, please join our Slack channel and let us know! 
 The Pinax documentation is available at http://pinaxproject.com/pinax/.
 
 
