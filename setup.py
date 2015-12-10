@@ -16,7 +16,7 @@ setup(
     description="a user to user join invitations app",
     name="pinax-invitations",
     long_description=read("README.rst"),
-    version="4.0.3",
+    version="4.0.4",
     url="http://github.com/pinax/pinax-invitations/",
     license="MIT",
     packages=find_packages(),
