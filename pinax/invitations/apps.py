@@ -6,7 +6,6 @@ from django.utils.translation import ugettext_lazy as _
 
 class AppConfig(BaseAppConfig):
 
-    label = "pinax_invitations"
     name = "pinax.invitations"
     verbose_name = _("Pinax Invitations")
 
