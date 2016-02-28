@@ -6,7 +6,7 @@ from pinax.invitations.models import InvitationStat
 
 
 class Command(BaseCommand):
-    help = "Adds invites to all users with no invites remaining."
+    help = "Adds invites to all users who don't have infinite invites."
     args = "Django <1.8 compatibility"
 
     def handle(self, *args, **kwargs):
