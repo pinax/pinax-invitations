@@ -7,6 +7,7 @@ from pinax.invitations.models import InvitationStat
 
 class Command(BaseCommand):
     help = "Makes sure all users have a certain number of invites."
+    args = "Django <1.8 compatibility"
 
     def handle(self, *args, **kwargs):
         if len(args) == 0:
