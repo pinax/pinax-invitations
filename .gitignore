@@ -9,3 +9,5 @@ MANIFEST
 docs/_build/
 htmlcov/
 .eggs/
+.pep8
+.python-version
