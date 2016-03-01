@@ -25,7 +25,11 @@ class JoinInvitation(models.Model):
     ]
 
     from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="invites_sent")
-    to_user = models.ForeignKey(settings.AUTH_USER_MODEL, null=True, related_name="invites_received")
+    to_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        null=True,
+        related_name="invites_received"
+    )
     message = models.TextField(null=True)
     sent = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(choices=INVITE_STATUS_CHOICES)
@@ -89,7 +93,9 @@ class InvitationStat(models.Model):
 
     user = models.OneToOneField(settings.AUTH_USER_MODEL)
     invites_sent = models.IntegerField(default=0)
-    invites_allocated = models.IntegerField(default=settings.PINAX_INVITATIONS_DEFAULT_INVITE_ALLOCATION)
+    invites_allocated = models.IntegerField(
+        default=settings.PINAX_INVITATIONS_DEFAULT_INVITE_ALLOCATION
+    )
     invites_accepted = models.IntegerField(default=0)
 
     def increment_accepted(self):
@@ -98,6 +104,9 @@ class InvitationStat(models.Model):
 
     @classmethod
     def add_invites_to_user(cls, user, amount):
+        """
+        Add the specified number of invites to current allocated total.
+        """
         stat, _ = InvitationStat.objects.get_or_create(user=user)
         if stat.invites_allocated != -1:
             stat.invites_allocated += amount
@@ -105,12 +114,17 @@ class InvitationStat(models.Model):
 
     @classmethod
     def add_invites(cls, amount):
+        """
+        Add invites for all users.
+        """
         for user in get_user_model().objects.all():
             cls.add_invites_to_user(user, amount)
 
     @classmethod
     def topoff_user(cls, user, amount):
-        "Makes sure user has a certain number of invites"
+        """
+        Ensure user has a minimum number of invites.
+        """
         stat, _ = cls.objects.get_or_create(user=user)
         remaining = stat.invites_remaining()
         if remaining != -1 and remaining < amount:
@@ -119,16 +133,24 @@ class InvitationStat(models.Model):
 
     @classmethod
     def topoff(cls, amount):
-        "Makes sure all users have a certain number of invites"
+        """
+        Ensure all users have a minimum number of invites.
+        """
         for user in get_user_model().objects.all():
             cls.topoff_user(user, amount)
 
     def invites_remaining(self):
+        """
+        Returns number of unsent allocated invites, or -1 for infinite.
+        """
         if self.invites_allocated == -1:
             return -1
         return self.invites_allocated - self.invites_sent
 
     def can_send(self):
+        """
+        Return True if an invite can be sent.
+        """
         if self.invites_allocated == -1:
             return True
         return self.invites_allocated > self.invites_sent

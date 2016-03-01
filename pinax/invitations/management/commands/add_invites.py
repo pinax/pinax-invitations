@@ -1,20 +1,17 @@
-import sys
-
 from django.core.management.base import BaseCommand
 
 from pinax.invitations.models import InvitationStat
 
 
 class Command(BaseCommand):
-    help = "Adds invites to all users with 0 invites remaining."
+    help = "Adds invites to all users who don't have infinite invites."
 
-    def handle(self, *args, **kwargs):
-        if len(args) == 0:
-            sys.exit("You must supply the number of invites as an argument.")
+    def add_arguments(self, parser):
+        parser.add_argument(
+            'num_invites',
+            type=int,
+            help="Number of invites to add"
+        )
 
-        try:
-            num_of_invites = int(args[0])
-        except ValueError:
-            sys.exit("The argument for number of invites must be an integer.")
-
-        InvitationStat.add_invites(num_of_invites)
+    def handle(self, *args, **options):
+        InvitationStat.add_invites(options['num_invites'])
