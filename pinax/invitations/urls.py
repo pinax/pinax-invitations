@@ -3,7 +3,7 @@ from django.conf.urls import url
 from .views import (
     addto_all,
     addto_user,
-    invite,
+    InviteView,
     topoff_all,
     invite_stat,
     topoff_user
@@ -11,7 +11,7 @@ from .views import (
 
 
 urlpatterns = [
-    url(r"^invite/$", invite, name="invite"),
+    url(r"^invite/$", InviteView.as_view(), name="invite"),
     url(r"^invite-stat/(?P<pk>\d+)/$", invite_stat, name="invite_stat"),
     url(r"^topoff/$", topoff_all, name="topoff_all"),
     url(r"^topoff/(?P<pk>\d+)/$", topoff_user, name="topoff_user"),
