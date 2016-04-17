@@ -6,5 +6,5 @@ except ImportError:
 
 urlpatterns = patterns(
     "",
-    (r"^", include("pinax.invitations.urls")),
+    (r"^", include("pinax.invitations.urls", namespace="pinax_invitations")),
 )
