@@ -1,20 +1,20 @@
 from django.conf.urls import url
 
 from .views import (
-    addto_all,
-    addto_user,
+    AddToAllView,
+    AddToUserView,
     InviteView,
-    topoff_all,
-    invite_stat,
-    topoff_user
+    TopOffAllView,
+    InviteStatView,
+    TopOffUserView
 )
 
 
 urlpatterns = [
     url(r"^invite/$", InviteView.as_view(), name="invite"),
-    url(r"^invite-stat/(?P<pk>\d+)/$", invite_stat, name="invite_stat"),
-    url(r"^topoff/$", topoff_all, name="topoff_all"),
-    url(r"^topoff/(?P<pk>\d+)/$", topoff_user, name="topoff_user"),
-    url(r"^addto/$", addto_all, name="addto_all"),
-    url(r"^addto/(?P<pk>\d+)/$", addto_user, name="addto_user"),
+    url(r"^invite-stat/(?P<pk>\d+)/$", InviteStatView.as_view(), name="invite_stat"),
+    url(r"^topoff/$", TopOffAllView.as_view(), name="topoff_all"),
+    url(r"^topoff/(?P<pk>\d+)/$", TopOffUserView.as_view(), name="topoff_user"),
+    url(r"^addto/$", AddToAllView.as_view(), name="addto_all"),
+    url(r"^addto/(?P<pk>\d+)/$", AddToUserView.as_view(), name="addto_user"),
 ]
