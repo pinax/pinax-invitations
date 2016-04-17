@@ -40,7 +40,7 @@ def run(*args):
 
     django.core.management.call_command(
         "makemigrations",
-        "invitations",
+        "pinax_invitations",
         *args
     )
 
