@@ -1,105 +1,150 @@
-import json
-
 from django.contrib.auth import get_user_model
-from django.http import HttpResponse
+from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
 from django.template.loader import render_to_string
-from django.views.decorators.http import require_POST
-
+from django.utils.decorators import method_decorator
+from django.views.generic import FormMixin, View
 from django.contrib.auth.decorators import permission_required
 
-from account.decorators import login_required
+from account.mixins import LoginRequiredMixin
 
 from .forms import InviteForm
 from .models import JoinInvitation, InvitationStat
 
 
-@login_required
-@require_POST
-def invite(request):
-    form = InviteForm(request.POST, user=request.user)
-    if form.is_valid():
-        email = form.cleaned_data["email_address"]
-        JoinInvitation.invite(request.user, email)
-        form = InviteForm(user=request.user)
-    data = {
-        "html": render_to_string(
-            "pinax/invitations/_invite_form.html", {
-                "form": form,
-                "user": request.user
-            }, context_instance=RequestContext(request)
-        ),
-        "fragments": {
-            ".pinax-invitations-invites-remaining": render_to_string(
-                "pinax/invitations/_invites_remaining.html", {
-                    "invites_remaining": request.user.invitationstat.invites_remaining()
-                }, context_instance=RequestContext(request)
+class InviteView(LoginRequiredMixin, FormMixin, View):
+
+    form_class = InviteForm
+    invite_form_fragment = "pinax/invitations/_invite_form.html"
+    invites_remaining_fragment = "pinax/invitations/_invites_remaining.html"
+    invited_fragment = "pinax/invitations/_invited.html"
+    invites_remaining_fragment_selector = ".pinax-invitations-invites-remaining"
+    invited_fragment_selector = ".pinax-invitations-invites-sent"
+
+    def get_data(self, form):
+        data = {
+            "html": render_to_string(
+                self.invite_form_fragment, {
+                    "form": form,
+                    "user": self.request.user
+                }, context_instance=RequestContext(self.request)
             ),
-            ".pinax-invitations-invites-sent": render_to_string(
-                "pinax/invitations/_invited.html", {
-                    "invited_list": request.user.invites_sent.all()
+            "fragments": {
+                self.invites_remaining_fragment_selector: render_to_string(
+                    self.invites_remaining_fragment, {
+                        "invites_remaining": self.request.user.invitationstat.invites_remaining()
+                    }, context_instance=RequestContext(self.request)
+                ),
+                self.invited_fragment_selector: render_to_string(
+                    self.invited_fragment, {
+                        "invited_list": self.request.user.invites_sent.all()
+                    }, context_instance=RequestContext(self.request)
+                )
+            }
+        }
+        return data
+
+    def get_form_kwargs(self):
+        kwargs = super(InviteView, self).get_form_kwargs()
+        kwargs.update({
+            "user": self.request.user
+        })
+        return kwargs
+
+    def form_valid(self, form):
+        email = form.cleaned_data["email_address"]
+        JoinInvitation.invite(self.request.user, email)
+        return JsonResponse(self.get_data(InviteForm(user=self.request.user)))
+
+    def form_invalid(self, form):
+        return JsonResponse(self.get_data(form))
+
+    def post(self, request, *args, **kwargs):
+        form = self.get_form()
+        if form.is_valid():
+            return self.form_valid(form)
+        else:
+            return self.form_invalid(form)
+
+
+class ManageInvitesView(LoginRequiredMixin, View):
+
+    @method_decorator(permission_required("pinax-invitations.manage_invites", raise_exception=True))
+    def dispatch(self, *args, **kwargs):
+        return super(ManageInvitesView, self).dispatch(*args, **kwargs)
+
+
+class InviteStatView(ManageInvitesView):
+
+    def get(self, request, *args, **kwargs):
+        user = get_object_or_404(get_user_model(), pk=kwargs.get("pk"))
+        return JsonResponse({
+            "html": render_to_string(
+                self.invite_stat_fragment, {
+                    "stat": user.invitationstat
                 }, context_instance=RequestContext(request)
             )
-        }
-    }
-    return HttpResponse(json.dumps(data), content_type="application/json")
+        })
 
 
-@login_required
-@permission_required("pinax-invitations.manage_invites", raise_exception=True)
-def invite_stat(request, pk):
-    user = get_object_or_404(get_user_model(), pk=pk)
-    return HttpResponse(json.dumps({
-        "html": render_to_string(
-            "pinax/invitations/_invite_stat.html", {
-                "stat": user.invitationstat
-            }, context_instance=RequestContext(request)
-        )
-    }), content_type="application/json")
+class ManageInviteAmountsView(ManageInvitesView):
+    amount_post_var = "amount"
+
+    def get_amount(self):
+        return int(self.request.POST.get(self.amount_post_var))
 
 
-@login_required
-@permission_required("pinax-invitations.manage_invites", raise_exception=True)
-@require_POST
-def topoff_all(request):
-    amount = int(request.POST.get("amount"))
-    InvitationStat.topoff(amount)
-    return HttpResponse(json.dumps({
-        "inner-fragments": {".invite-total": amount}
-    }), content_type="application/json")
+class AllManageInviteAmountsView(ManageInviteAmountsView):
+
+    def action(self, amount):
+        return
+
+    def post(self, request, *args, **kwargs):
+        amount = self.get_amount()
+        self.action(amount)
+        return JsonResponse({
+            "inner-fragments": {self.inner_fragments_amount_selector: amount}
+        })
 
 
-@login_required
-@permission_required("pinax-invitations.manage_invites", raise_exception=True)
-@require_POST
-def topoff_user(request, pk):
-    user = get_object_or_404(get_user_model(), pk=pk)
-    amount = int(request.POST.get("amount"))
-    InvitationStat.topoff_user(user=user, amount=amount)
-    return HttpResponse(json.dumps({
-        "html": amount
-    }), content_type="application/json")
+class UserManageInviteAmountsView(ManageInviteAmountsView):
+
+    def action(self, user, amount):
+        return
+
+    def post(self, request, *args, **kwargs):
+        user = get_object_or_404(get_user_model(), pk=kwargs.get("pk"))
+        amount = self.get_amount()
+        self.action(user, amount)
+        return JsonResponse({
+            "html": amount
+        })
 
 
-@login_required
-@permission_required("pinax-invitations.manage_invites", raise_exception=True)
-@require_POST
-def addto_all(request):
-    amount = int(request.POST.get("amount"))
-    InvitationStat.add_invites(amount)
-    return HttpResponse(json.dumps({
-        "inner-fragments": {".amount-added": amount}
-    }), content_type="application/json")
+class TopOffAllView(AllManageInviteAmountsView):
+
+    inner_fragments_amount_selector = ".invite-total"
+
+    def action(self, amount):
+        InvitationStat.topoff(amount)
 
 
-@login_required
-@permission_required("pinax-invitations.manage_invites", raise_exception=True)
-@require_POST
-def addto_user(request, pk):
-    user = get_object_or_404(get_user_model(), pk=pk)
-    amount = int(request.POST.get("amount"))
-    InvitationStat.add_invites_to_user(user=user, amount=amount)
-    return HttpResponse(json.dumps({
-        "html": amount
-    }), content_type="application/json")
+class TopOffUserView(UserManageInviteAmountsView):
+
+    def action(self, user, amount):
+        InvitationStat.topoff_user(user=user, amount=amount)
+
+
+class AddToAllView(AllManageInviteAmountsView):
+
+    inner_fragments_amount_selector = ".amount-added"
+
+    def action(self, amount):
+        InvitationStat.add_invites(amount)
+
+
+class AddToUserView(UserManageInviteAmountsView):
+
+    def action(self, user, amount):
+        InvitationStat.add_invites_to_user(user=user, amount=amount)
