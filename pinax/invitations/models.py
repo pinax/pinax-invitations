@@ -25,9 +25,14 @@ class JoinInvitation(models.Model):
         (STATUS_JOINED_INDEPENDENTLY, "Joined Independently")
     ]
 
-    from_user = models.ForeignKey(settings.AUTH_USER_MODEL, related_name="invites_sent")
+    from_user = models.ForeignKey(
+        settings.AUTH_USER_MODEL,
+        on_delete=models.CASCADE,
+        related_name="invites_sent",
+    )
     to_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
+        on_delete = models.CASCADE,
         null=True,
         related_name="invites_received"
     )
@@ -92,7 +97,7 @@ class JoinInvitation(models.Model):
 
 class InvitationStat(models.Model):
 
-    user = models.OneToOneField(settings.AUTH_USER_MODEL)
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)
     invites_sent = models.IntegerField(default=0)
     invites_allocated = models.IntegerField(
         default=settings.PINAX_INVITATIONS_DEFAULT_INVITE_ALLOCATION
