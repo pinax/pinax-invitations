@@ -24,9 +24,6 @@ class TestsJoinInvitation(TestCase):
             signup_code=self.signup_code,
         )
 
-    def test_to_user_email(self):
-        self.assertEqual(self.signup_code.email, "me@you.com")
-
     def test_accept(self):
         self.invitation.accept(self.to_user)
         self.assertEqual(self.from_user.invitationstat.invites_accepted, 1)
