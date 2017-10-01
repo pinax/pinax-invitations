@@ -32,7 +32,7 @@ class JoinInvitation(models.Model):
     )
     to_user = models.ForeignKey(
         settings.AUTH_USER_MODEL,
-        on_delete = models.CASCADE,
+        on_delete=models.CASCADE,
         null=True,
         related_name="invites_received"
     )
