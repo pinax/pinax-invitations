@@ -39,7 +39,7 @@ class JoinInvitation(models.Model):
     message = models.TextField(null=True)
     sent = models.DateTimeField(default=timezone.now)
     status = models.IntegerField(choices=INVITE_STATUS_CHOICES)
-    signup_code = models.OneToOneField(SignupCode)
+    signup_code = models.OneToOneField(SignupCode, on_delete=models.CASCADE)
 
     def to_user_email(self):
         return self.signup_code.email
