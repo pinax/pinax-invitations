@@ -43,4 +43,3 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
     ]
-on_delete will be a required arg for ForeignKey/OneToOneField in Django 2.0
