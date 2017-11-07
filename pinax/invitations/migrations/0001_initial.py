@@ -21,7 +21,7 @@ class Migration(migrations.Migration):
                 ('invites_sent', models.IntegerField(default=0)),
                 ('invites_allocated', models.IntegerField(default=0)),
                 ('invites_accepted', models.IntegerField(default=0)),
-                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL)),
+                ('user', models.OneToOneField(to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
             ],
             options={
             },
@@ -34,9 +34,9 @@ class Migration(migrations.Migration):
                 ('message', models.TextField(null=True)),
                 ('sent', models.DateTimeField(default=django.utils.timezone.now)),
                 ('status', models.IntegerField(choices=[(1, b'Sent'), (2, b'Accepted'), (3, b'Joined Independently')])),
-                ('from_user', models.ForeignKey(related_name='invites_sent', to=settings.AUTH_USER_MODEL)),
-                ('signup_code', models.OneToOneField(to='account.SignupCode')),
-                ('to_user', models.ForeignKey(related_name='invites_received', to=settings.AUTH_USER_MODEL, null=True)),
+                ('from_user', models.ForeignKey(related_name='invites_sent', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE)),
+                ('signup_code', models.OneToOneField(to='account.SignupCode', on_delete=models.CASCADE)),
+                ('to_user', models.ForeignKey(related_name='invites_received', to=settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)),
             ],
             options={
             },

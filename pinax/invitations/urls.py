@@ -9,6 +9,8 @@ from .views import (
     TopOffUserView
 )
 
+app_name = "pinax_invitations"
+
 urlpatterns = [
     url(r"^invite/$", InviteView.as_view(), name="invite"),
     url(r"^invite-stat/(?P<pk>\d+)/$", InviteStatView.as_view(), name="invite_stat"),
