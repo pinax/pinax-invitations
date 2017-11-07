@@ -81,7 +81,7 @@ Django's coding style:
 * URL patterns should use the `url()` function rather than a tuple.
 
 Here is an example of these rules applied:
-
+```
     # first set of imports are stdlib imports
     # non-from imports go first then from style import in their own group
     import csv
@@ -133,7 +133,7 @@ Here is an example of these rules applied:
     class TaskComment(models.Model):
         # ... you get the point ...
         pass
-
+```
 
 ## Pull Requests
 

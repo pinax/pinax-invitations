@@ -1,12 +1,11 @@
+from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils import timezone
-
-from django.contrib.auth import get_user_model
 
 from account.models import SignupCode
 
 from .conf import settings
-from .signals import invite_sent, joined_independently, invite_accepted
+from .signals import invite_accepted, invite_sent, joined_independently
 
 
 class NotEnoughInvitationsError(Exception):

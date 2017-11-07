@@ -3,9 +3,9 @@ from django.conf.urls import url
 from .views import (
     AddToAllView,
     AddToUserView,
+    InviteStatView,
     InviteView,
     TopOffAllView,
-    InviteStatView,
     TopOffUserView
 )
 
