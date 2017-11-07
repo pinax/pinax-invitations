@@ -3,12 +3,11 @@ from django.conf.urls import url
 from .views import (
     AddToAllView,
     AddToUserView,
+    InviteStatView,
     InviteView,
     TopOffAllView,
-    InviteStatView,
     TopOffUserView
 )
-
 
 urlpatterns = [
     url(r"^invite/$", InviteView.as_view(), name="invite"),

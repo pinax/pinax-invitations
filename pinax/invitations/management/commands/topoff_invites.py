@@ -8,10 +8,10 @@ class Command(BaseCommand):
 
     def add_arguments(self, parser):
         parser.add_argument(
-            'num_invites',
+            "num_invites",
             type=int,
             help="Minimum number of invites"
         )
 
     def handle(self, *args, **options):
-        InvitationStat.topoff(options['num_invites'])
+        InvitationStat.topoff(options["num_invites"])

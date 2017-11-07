@@ -3,11 +3,7 @@ from django.core.management import call_command
 from django.test import TestCase
 
 from account.models import SignupCode
-
-from pinax.invitations.models import (
-    JoinInvitation,
-    InvitationStat,
-)
+from pinax.invitations.models import InvitationStat, JoinInvitation
 
 
 class TestsJoinInvitation(TestCase):

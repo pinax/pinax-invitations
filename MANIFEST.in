@@ -1,5 +1,5 @@
 include AUTHORS
 include LICENSE
-include README.rst
+include README.md
 recursive-include pinax/invitations/static *
 recursive-include pinax/invitations/templates *

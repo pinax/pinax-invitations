@@ -1,3 +1,5 @@
+from django.contrib.auth import get_user_model
+from django.contrib.auth.decorators import permission_required
 from django.http import JsonResponse
 from django.shortcuts import get_object_or_404
 from django.template import RequestContext
@@ -6,13 +8,10 @@ from django.utils.decorators import method_decorator
 from django.views.generic import View
 from django.views.generic.edit import FormMixin
 
-from django.contrib.auth import get_user_model
-from django.contrib.auth.decorators import permission_required
-
 from account.mixins import LoginRequiredMixin
 
 from .forms import InviteForm
-from .models import JoinInvitation, InvitationStat
+from .models import InvitationStat, JoinInvitation
 
 
 class InviteView(LoginRequiredMixin, FormMixin, View):
