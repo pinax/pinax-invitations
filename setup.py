@@ -4,14 +4,14 @@ LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/blank.svg
     :target: https://pypi.python.org/pypi/pinax-invitations/
 
-=================
+=========
 Pinax Invitations
-=================
+=========
 
 .. image:: https://img.shields.io/pypi/v/pinax-invitations.svg
     :target: https://pypi.python.org/pypi/pinax-invitations/
-.. image:: https://img.shields.io/badge/license-MIT-blue.svg
-    :target: https://pypi.python.org/pypi/pinax-invitations/
+
+\ 
 
 .. image:: https://img.shields.io/circleci/project/github/pinax/pinax-invitations.svg
     :target: https://circleci.com/gh/pinax/pinax-invitations
@@ -24,18 +24,27 @@ Pinax Invitations
 .. image:: https://img.shields.io/github/issues-pr-closed/pinax/pinax-invitations.svg
     :target: https://github.com/pinax/pinax-invitations/pulls?q=is%3Apr+is%3Aclosed
 
+\ 
+
 .. image:: http://slack.pinaxproject.com/badge.svg
     :target: http://slack.pinaxproject.com/
+.. image:: https://img.shields.io/badge/license-MIT-blue.svg
+    :target: https://pypi.python.org/pypi/pinax-app/
 
+\ 
 
 ``pinax-invitations`` is a user to user join invitations app.
-
 
 Supported Django and Python Versions
 ------------------------------------
 
-* Django 1.8, 1.10, 1.11, and 2.0
-* Python 2.7, 3.4, 3.5, and 3.6
++-----------------+-----+-----+-----+-----+
+| Django / Python | 2.7 | 3.4 | 3.5 | 3.6 |
++=================+=====+=====+=====+=====+
+|  1.11           |  *  |  *  |  *  |  *  |
++-----------------+-----+-----+-----+-----+
+|  2.0            |     |  *  |  *  |  *  |
++-----------------+-----+-----+-----+-----+
 """
 
 setup(
@@ -44,7 +53,7 @@ setup(
     description="a user to user join invitations app",
     name="pinax-invitations",
     long_description=LONG_DESCRIPTION,
-    version="5.1.0",
+    version="6.1.0",
     url="http://github.com/pinax/pinax-invitations/",
     license="MIT",
     packages=find_packages(),
@@ -62,8 +71,6 @@ setup(
         "Development Status :: 5 - Production/Stable",
         "Environment :: Web Environment",
         "Framework :: Django",
-        'Framework :: Django :: 1.8',
-        'Framework :: Django :: 1.10',
         'Framework :: Django :: 1.11',
         'Framework :: Django :: 2.0',
         "Intended Audience :: Developers",
