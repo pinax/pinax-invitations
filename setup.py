@@ -4,9 +4,9 @@ LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/blank.svg
     :target: https://pypi.python.org/pypi/pinax-invitations/
 
-=========
+=================
 Pinax Invitations
-=========
+=================
 
 .. image:: https://img.shields.io/pypi/v/pinax-invitations.svg
     :target: https://pypi.python.org/pypi/pinax-invitations/
