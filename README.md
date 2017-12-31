@@ -19,9 +19,9 @@ The `pinax-invitations` documentation is currently under construction. If you wo
 
 * [About Pinax](#about-pinax)
 * [Overview](#overview)
-  * [History](#history)
   * [Supported Django and Python versions](#supported-django-and-python-versions)
 * [Change Log](#change-log)
+* [History](#history)
 * [Contribute](#contribute)
 * [Code of Conduct](#code-of-conduct)
 * [Connect with Pinax](#connect-with-pinax)
@@ -37,10 +37,6 @@ Pinax is an open-source platform built on the Django Web Framework. It is an eco
 ### Overview
 
 `pinax-invitations` is a site invitation app for Django.
-
-#### History
-
-* Eldarion’s `kaleo` app was donated to Pinax and renamed `pinax-invitations`.
 
 #### Supported Django and Python versions
 
@@ -93,7 +89,12 @@ Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
 
 ### 2.0.0
 
-* Eldarion’s `kaleo` app was donated to Pinax and renamed `pinax-invitations`.
+* Initial release as `pinax-invitations`.
+
+
+## History
+
+Eldarion’s `kaleo` app was donated to Pinax and renamed `pinax-invitations`.
 
 
 ## Contribute
