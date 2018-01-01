@@ -1,5 +1,6 @@
 from setuptools import find_packages, setup
 
+VERSION = "6.1.0"
 LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/blank.svg
     :target: https://pypi.python.org/pypi/pinax-invitations/
@@ -53,7 +54,7 @@ setup(
     description="a user to user join invitations app",
     name="pinax-invitations",
     long_description=LONG_DESCRIPTION,
-    version="6.1.0",
+    version=VERSION,
     url="http://github.com/pinax/pinax-invitations/",
     license="MIT",
     packages=find_packages(),
