@@ -1,6 +1,10 @@
 from django.contrib import admin
+from django.contrib.auth import get_user_model
 
 from .models import InvitationStat, JoinInvitation
+
+
+User = get_user_model()
 
 
 class InvitationStatAdmin(admin.ModelAdmin):
@@ -21,6 +25,6 @@ admin.site.register(
     JoinInvitation,
     list_display=["from_user", "to_user", "sent", "status", "to_user_email"],
     list_filter=["sent", "status"],
-    search_fields=["from_user__username"]
+    search_fields=["from_user__{}".format(User.USERNAME_FIELD)]
 )
 admin.site.register(InvitationStat, InvitationStatAdmin)
