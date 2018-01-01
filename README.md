@@ -3,7 +3,6 @@
 # Pinax Invitations
 
 [![](https://img.shields.io/pypi/v/pinax-invitations.svg)](https://pypi.python.org/pypi/pinax-invitations/)
-[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://pypi.python.org/pypi/pinax-invitations/)
 
 [![CircleCi](https://img.shields.io/circleci/project/github/pinax/pinax-invitations.svg)](https://circleci.com/gh/pinax/pinax-invitations)
 [![Codecov](https://img.shields.io/codecov/c/github/pinax/pinax-invitations.svg)](https://codecov.io/gh/pinax/pinax-invitations)
@@ -12,33 +11,49 @@
 [![](https://img.shields.io/github/issues-pr-closed/pinax/pinax-invitations.svg)](https://github.com/pinax/pinax-invitations/pulls?q=is%3Apr+is%3Aclosed)
 
 [![](http://slack.pinaxproject.com/badge.svg)](http://slack.pinaxproject.com/)
-
-
-## pinax-invitations
-
-`pinax-invitations` is a site invitation app for Django.
-
-### Supported Django and Python Versions
-
-* Django 1.8, 1.10, 1.11, and 2.0
-* Python 2.7, 3.4, 3.5, and 3.6
-
+[![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
 ## Table of Contents
 
 The `pinax-invitations` documentation is currently under construction. If you would like to help us write documentation, please join our Slack team and let us know! 
 
-* [Change Log](#change-log)
 * [About Pinax](#about-pinax)
+* [Overview](#overview)
+  * [Supported Django and Python versions](#supported-django-and-python-versions)
+* [Change Log](#change-log)
+* [History](#history)
 * [Contribute](#contribute)
 * [Code of Conduct](#code-of-conduct)
+* [Connect with Pinax](#connect-with-pinax)
+* [License](#license)
+
+## About Pinax
+
+Pinax is an open-source platform built on the Django Web Framework. It is an ecosystem of reusable Django apps, themes, and starter project templates. This collection can be found at http://pinaxproject.com.
 
 
-## Installation
+## pinax-invitations
+
+### Overview
+
+`pinax-invitations` is a site invitation app for Django.
+
+#### Supported Django and Python versions
+
+Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
+--------------- | --- | --- | --- | ---
+1.11 |  *  |  *  |  *  |  *  
+2.0  |     |  *  |  *  |  *
+
 
 ## Change Log
 
-### 5.1.0
+### 6.1.0
+
+* Standardize documentation layout
+* Drop Django v1.8, v1.10 support
+
+### 6.0.0
 
 * Add Django 2.0 compatibility testing
 * Drop Django 1.9 and Python 3.3 support
@@ -74,27 +89,41 @@ The `pinax-invitations` documentation is currently under construction. If you wo
 
 ### 2.0.0
 
-* Eldarion’s `kaleo` app was donated to Pinax and renamed `pinax-invitations`.
+* Initial release as `pinax-invitations`.
 
 
-## About Pinax
+## History
 
-Pinax is an open-source platform built on the Django Web Framework. It is an ecosystem of reusable Django apps, themes, and starter project templates. This collection can be found at http://pinaxproject.com.
-
-The Pinax documentation is available at http://pinaxproject.com/pinax/. If you would like to help us improve our documentation or write more documentation, please join our Pinax Project Slack team and let us know!
-
-For updates and news regarding the Pinax Project, please follow us on Twitter at @pinaxproject and check out our [blog](http://blog.pinaxproject.com).
+Eldarion’s `kaleo` app was donated to Pinax and renamed `pinax-invitations`.
 
 
 ## Contribute
 
-See [this blog post](http://blog.pinaxproject.com/2016/02/26/recap-february-pinax-hangout/) including a video, or our [How to Contribute](http://pinaxproject.com/pinax/how_to_contribute/) section for an overview on how contributing to Pinax works. For concrete contribution ideas, please see our [Ways to Contribute/What We Need Help With](http://pinaxproject.com/pinax/ways_to_contribute/) section.
+For an overview on how contributing to Pinax works read this [blog post](http://blog.pinaxproject.com/2016/02/26/recap-february-pinax-hangout/)
+and watch the included video, or read our [How to Contribute](http://pinaxproject.com/pinax/how_to_contribute/) section.
+For concrete contribution ideas, please see our
+[Ways to Contribute/What We Need Help With](http://pinaxproject.com/pinax/ways_to_contribute/) section.
 
-In case of any questions we recommend you [join our Pinax Slack team](http://slack.pinaxproject.com) and ping us there instead of creating an issue on GitHub. Creating issues on GitHub is of course also valid but we are usually able to help you faster if you ping us in Slack.
+In case of any questions we recommend you join our [Pinax Slack team](http://slack.pinaxproject.com)
+and ping us there instead of creating an issue on GitHub. Creating issues on GitHub is of course
+also valid but we are usually able to help you faster if you ping us in Slack.
 
-We also highly recommend reading our [Open Source and Self-Care blog post](http://blog.pinaxproject.com/2016/01/19/open-source-and-self-care/).
+We also highly recommend reading our blog post on [Open Source and Self-Care](http://blog.pinaxproject.com/2016/01/19/open-source-and-self-care/).
 
 
 ## Code of Conduct
 
-In order to foster a kind, inclusive, and harassment-free community, the Pinax Project has a code of conduct, which can be found [here](http://pinaxproject.com/pinax/code_of_conduct/). We ask you to treat everyone as a smart human programmer that shares an interest in Python, Django, and Pinax with you.
+In order to foster a kind, inclusive, and harassment-free community, the Pinax Project
+has a [code of conduct](http://pinaxproject.com/pinax/code_of_conduct/).
+We ask you to treat everyone as a smart human programmer that shares an interest in Python, Django, and Pinax with you.
+
+
+## Connect with Pinax
+
+For updates and news regarding the Pinax Project, please follow us on Twitter [@pinaxproject](https://twitter.com/pinaxproject)
+and check out our [Pinax Project blog](http://blog.pinaxproject.com).
+
+
+## License
+
+Copyright (c) 2012-2018 James Tauber and contributors under the [MIT license](https://opensource.org/licenses/MIT).
