@@ -6,7 +6,7 @@ from .views import (
     InviteStatView,
     InviteView,
     TopOffAllView,
-    TopOffUserView
+    TopOffUserView,
 )
 
 app_name = "pinax_invitations"
