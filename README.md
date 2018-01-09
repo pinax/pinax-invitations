@@ -83,10 +83,10 @@ Next, add [settings](#settings) as needed to customize pinax-invitation’s defa
 Finally, add `pinax.invitations.urls` to your project urlpatterns:
 
 ```python
-urlpatterns = [
-    # other urls
-    url(r"^blog/", include("pinax.invitations.urls", namespace="pinax_invitations")),
-]
+    urlpatterns = [
+        # other urls
+        url(r"^blog/", include("pinax.invitations.urls", namespace="pinax_invitations")),
+    ]
 ```
 
 
@@ -97,7 +97,7 @@ The invite form is intended to function via AJAX and as such returns JSON. Incor
 [`eldarion-ajax`](https://github.com/eldarion/eldarion-ajax) for markup-based AJAX handling
 that works out of the box. Note you can use another AJAX handling library if needed.
 
-`pinax-theme-bootstrap` is a semi-optional dependency. Tthe only reason it is required is
+`pinax-theme-bootstrap` is a semi-optional dependency. The only reason it is required is
 the included _invite_form.html renders the form through the as_bootstrap filter.
 If you override this template in your project, you obviously remove this requirement in context of this app.
 
