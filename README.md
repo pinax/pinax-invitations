@@ -85,7 +85,7 @@ Finally, add `pinax.invitations.urls` to your project urlpatterns:
 ```python
     urlpatterns = [
         # other urls
-        url(r"^blog/", include("pinax.invitations.urls", namespace="pinax_invitations")),
+        url(r"^invitations/", include("pinax.invitations.urls", namespace="pinax_invitations")),
     ]
 ```
 
