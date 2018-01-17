@@ -67,7 +67,9 @@ Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
 
 To install pinax-invitations:
 
-    pip install pinax-invitations
+```commandline
+    $ pip install pinax-invitations
+```
 
 Add `pinax.invitations` to your `INSTALLED_APPS` setting:
 
@@ -197,6 +199,7 @@ Adds invites to all users with 0 invites remaining.
 ```python
 manage.py add_invites 10  # Adds 10 new invites to all users with 0 invites remaining
 ```
+
 #### infinite_invites
 
 Gives all users unlimited invites.
@@ -231,7 +234,7 @@ URL: `pinax_invitations:topoff_all`
 
 Returns:
 
-```djangotemplate
+```python
 {
     "inner-fragments": {
         ".invite-total": amount
@@ -247,7 +250,7 @@ URL: `pinax_invitations:topoff_user user.pk`
 
 Returns:
 
-```djangotemplate
+```python
 {
     "html": amount
 }
@@ -261,7 +264,7 @@ URL: `pinax_invitations:addto_all`
 
 Returns:
 
-```djangotemplate
+```python
 {
     "inner-fragments": {
         ".amount-added": amount
@@ -277,7 +280,7 @@ URL: `pinax_invitations:addto_user user.pk`
 
 Returns:
 
-```djangotemplate
+```python
 {
     "inner-fragments": {
         ".html": amount
@@ -296,7 +299,7 @@ URL: `pinax_invitations:invite_stat user.pk`
 
 Returns:
 
-```djangotemplate
+```python
 {
     "html": <rendered pinax/invitations/_invite_stat.html>  # provided by site developer
 }
@@ -304,6 +307,12 @@ Returns:
 
 
 ## Change Log
+
+### 6.1.1
+
+* Add django>=1.11 to requirements
+* Update CI config
+* Improve documentation markup
 
 ### 6.1.0
 

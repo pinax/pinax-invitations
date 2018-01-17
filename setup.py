@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = "6.1.0"
+VERSION = "6.1.1"
 LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/pinax-invitations.svg
     :target: https://pypi.python.org/pypi/pinax-invitations/
@@ -62,8 +62,9 @@ setup(
         "invitations": []
     },
     install_requires=[
+        "django>=1.11",
         "django-appconf>=1.0.1",
-        "django-user-accounts>=1.3",
+        "django-user-accounts>=2.0.3",
     ],
     test_suite="runtests.runtests",
     tests_require=[
