@@ -131,7 +131,7 @@ this tag to show the number of invites remaining for a user:
 
 You’ll then need to include eldarion-ajax:
 
-```django
+```javascript
 <script>require('eldarion-ajax');</script>
 ```
 
@@ -230,7 +230,7 @@ URL: `pinax_invitations:topoff_all`
 
 Returns:
 
-```python
+```javascript
 {
     "inner-fragments": {
         ".invite-total": amount
@@ -246,7 +246,7 @@ URL: `pinax_invitations:topoff_user user.pk`
 
 Returns:
 
-```python
+```javascript
 {
     "html": amount
 }
@@ -260,7 +260,7 @@ URL: `pinax_invitations:addto_all`
 
 Returns:
 
-```python
+```javascript
 {
     "inner-fragments": {
         ".amount-added": amount
@@ -276,7 +276,7 @@ URL: `pinax_invitations:addto_user user.pk`
 
 Returns:
 
-```python
+```javascript
 {
     "inner-fragments": {
         ".html": amount
@@ -295,7 +295,7 @@ URL: `pinax_invitations:invite_stat user.pk`
 
 Returns:
 
-```python
+```javascript
 {
     "html": <rendered pinax/invitations/_invite_stat.html>  # provided by site developer
 }
