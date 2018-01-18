@@ -13,9 +13,8 @@
 [![](http://slack.pinaxproject.com/badge.svg)](http://slack.pinaxproject.com/)
 [![](https://img.shields.io/badge/license-MIT-blue.svg)](https://opensource.org/licenses/MIT)
 
-## Table of Contents
 
-The `pinax-invitations` documentation is currently under construction. If you would like to help us write documentation, please join our Slack team and let us know! 
+## Table of Contents
 
 * [About Pinax](#about-pinax)
 * [Overview](#overview)
@@ -36,6 +35,7 @@ The `pinax-invitations` documentation is currently under construction. If you wo
 * [Connect with Pinax](#connect-with-pinax)
 * [License](#license)
 
+
 ## About Pinax
 
 Pinax is an open-source platform built on the Django Web Framework. It is an ecosystem of reusable Django apps, themes, and starter project templates. This collection can be found at http://pinaxproject.com.
@@ -52,7 +52,6 @@ Pinax is an open-source platform built on the Django Web Framework. It is an eco
 * django-user-accounts
 * django-appconf
 
-
 #### Supported Django and Python versions
 
 Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
@@ -63,11 +62,13 @@ Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
 
 ## Documentation
 
+The `pinax-invitations` documentation is currently under construction. If you would like to help us write documentation, please join our Slack team and let us know! 
+
 ### Installation
 
 To install pinax-invitations:
 
-```commandline
+```shell
     $ pip install pinax-invitations
 ```
 
@@ -91,7 +92,6 @@ Finally, add `pinax.invitations.urls` to your project urlpatterns:
     ]
 ```
 
-
 ### Usage
 
 Integrating pinax-invitations into your project involves using template tags and wiring up javascript.
@@ -106,7 +106,7 @@ If you override this template in your project, you obviously remove this require
 Get started by adding the following blocks to your templates to expose an invite form
 and display to the user a list of who they have invited:
 
-```djangotemplate
+```django
 {% load pinax_invitations_tags %}
 
 <div class="invites">
@@ -123,7 +123,7 @@ Then if you have an account bar somewhere at the top of your screen
 which shows the user if they were logged in or not, you might include
 this tag to show the number of invites remaining for a user:
 
-```djangotemplate
+```django
 {% load pinax_invitations_tags %}
 
 {% invites_remaining user %}
@@ -131,10 +131,9 @@ this tag to show the number of invites remaining for a user:
 
 You’ll then need to include eldarion-ajax:
 
-```djangotemplate
+```django
 <script>require('eldarion-ajax');</script>
 ```
-
 
 ### Settings
 
@@ -151,7 +150,6 @@ Defines the default number of invites that new users are allocated when they sig
 In order to enable unlimited invitations, set this to -1.
 
 Default: 0
-
 
 ### Templates
 
@@ -170,7 +168,6 @@ An unordered list of people you have invited that is linked to their profile whe
 
 Fragment displays how many invites a particular user has.
 
-
 ### Signals
 
 These signals are sent from `JoinInvitation` and provides a single keyword argument, "invitation"
@@ -188,7 +185,6 @@ Sent immediately after invitation acceptance has been processed.
 
 Sent when someone signs up using the same email address that exists for an invitation
 and they confirm that email address.
-
 
 ### Management Commands
 
