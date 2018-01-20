@@ -24,10 +24,10 @@
   * [Installation](#installation)
   * [Usage](#usage)
   * [Settings](#settings)
-  * [Templates](#templates)
   * [Signals](#signals)
   * [Management Commands](#management-commands)
   * [Views](#views)
+  * [Templates](#templates)
 * [Change Log](#change-log)
 * [History](#history)
 * [Contribute](#contribute)
@@ -131,7 +131,7 @@ this tag to show the number of invites remaining for a user:
 
 You’ll then need to include eldarion-ajax:
 
-```javascript
+```django
 <script>require('eldarion-ajax');</script>
 ```
 
@@ -151,22 +151,6 @@ In order to enable unlimited invitations, set this to -1.
 
 Default: 0
 
-### Templates
-
-`pinax-invitations` comes with minimal template snippets that get rendered with template tags.
-
-#### _invite_form.html
-
-A snippet that renders the invite form as well as a div to hold the contents
-of the response from the form AJAX submission.
-
-#### _invited.html
-
-An unordered list of people you have invited that is linked to their profile when they join the site.
-
-#### _invites_remaining.html
-
-Fragment displays how many invites a particular user has.
 
 ### Signals
 
@@ -300,6 +284,44 @@ Returns:
     "html": <rendered pinax/invitations/_invite_stat.html>  # provided by site developer
 }
 ```
+
+
+### Templates
+
+`pinax-invitations` uses minimal template snippets rendered with template tags.
+
+Default templates are provided by the `pinax-templates` app in the
+[invitations](https://github.com/pinax/pinax-templates/tree/master/pinax/templates/templates/pinax/invitations)
+section of that project.
+
+Reference pinax-templates
+[installation instructions](https://github.com/pinax/pinax-templates/blob/master/README.md#installation)
+to include these templates in your project.
+
+#### Customizing Templates
+
+Override the default `pinax-templates` templates by copying them into your project
+subdirectory `pinax/invitations/` on the template path and modifying as needed.
+
+For example if your project doesn't use Bootstrap, copy the desired templates
+then remove Bootstrap and Font Awesome class names from your copies.
+Remove class references like `class="btn btn-success"` and `class="icon icon-pencil"` as well as
+`bootstrap` from the `{% load i18n bootstrap %}` statement.
+Since `bootstrap` template tags and filters are no longer loaded, you'll also need to update
+`{{ form|bootstrap }}` to `{{ form }}` since the "bootstrap" filter is no longer available.
+
+#### `_invite_form.html`
+
+A snippet that renders the invite form as well as a div to hold the contents
+of the response from the form AJAX submission.
+
+#### `_invited.html`
+
+An unordered list of people you have invited that is linked to their profile when they join the site.
+
+#### `_invites_remaining.html`
+
+Fragment displays how many invites a particular user has.
 
 
 ## Change Log
