@@ -29,18 +29,18 @@ class InviteView(LoginRequiredMixin, FormMixin, View):
                 self.invite_form_fragment, {
                     "form": form,
                     "user": self.request.user
-                }, context_instance=RequestContext(self.request)
+                }, request=self.request
             ),
             "fragments": {
                 self.invites_remaining_fragment_selector: render_to_string(
                     self.invites_remaining_fragment, {
                         "invites_remaining": self.request.user.invitationstat.invites_remaining()
-                    }, context_instance=RequestContext(self.request)
+                    }, request=self.request
                 ),
                 self.invited_fragment_selector: render_to_string(
                     self.invited_fragment, {
                         "invited_list": self.request.user.invites_sent.all()
-                    }, context_instance=RequestContext(self.request)
+                    }, request=self.request
                 )
             }
         }

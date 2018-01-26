@@ -324,6 +324,11 @@ Fragment displays how many invites a particular user has.
 
 ## Change Log
 
+### 6.1.2
+
+* Replace deprecated `context_instance=RequestContext(r)` kwarg with `request=r`
+* Add InviteView smoke tests
+
 ### 6.1.1
 
 * Add django>=1.11 to requirements

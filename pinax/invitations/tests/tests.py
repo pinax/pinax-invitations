@@ -1,10 +1,10 @@
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from django.test import TestCase
 
 from account.models import SignupCode
 from pinax.invitations.forms import InviteForm
 from pinax.invitations.models import InvitationStat, JoinInvitation
+from test_plus.test import TestCase
 
 
 class TestsJoinInvitation(TestCase):
@@ -73,3 +73,26 @@ class FormTests(TestCase):
         }
         form = InviteForm(user=from_user, data=form_data)
         self.assertFalse(form.is_valid())
+
+
+class ViewTests(TestCase):
+
+    def test_invite_view(self):
+        """verify no errors when posting good form data"""
+        user = self.make_user("amy")
+        InvitationStat.add_invites(2)
+        post_data = {
+            "email_address": "amy@example.com"
+        }
+        with self.login(user):
+            self.post("pinax_invitations:invite", data=post_data)
+            self.response_200()
+
+    def test_invite_view_bad_data(self):
+        """verify no errors when posting bad data"""
+        user = self.make_user("sandee")
+        post_data = {
+        }
+        with self.login(user):
+            self.post("pinax_invitations:invite", data=post_data)
+            self.response_200()
