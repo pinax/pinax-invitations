@@ -326,8 +326,9 @@ Fragment displays how many invites a particular user has.
 
 ### 6.1.2
 
-* Replace deprecated `context_instance=RequestContext(r)` kwarg with `request=r`
+* Replace deprecated `context_instance=RequestContext(r)` kwarg with `request=r` kwarg
 * Add InviteView smoke tests
+* Add form test
 
 ### 6.1.1
 
