@@ -62,8 +62,6 @@ Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
 
 ## Documentation
 
-The `pinax-invitations` documentation is currently under construction. If you would like to help us write documentation, please join our Slack team and let us know! 
-
 ### Installation
 
 To install pinax-invitations:
@@ -325,6 +323,11 @@ Fragment displays how many invites a particular user has.
 
 
 ## Change Log
+
+### 6.1.2
+
+* Replace deprecated `context_instance=RequestContext(r)` kwarg with `request=r`
+* Add InviteView smoke tests
 
 ### 6.1.1
 

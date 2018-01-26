@@ -6,15 +6,21 @@ import django
 
 from django.conf import settings
 
-
 DEFAULT_SETTINGS = dict(
     INSTALLED_APPS=[
         "django.contrib.auth",
         "django.contrib.contenttypes",
+        "django.contrib.sessions",
         "django.contrib.sites",
         "account",
+        "bootstrapform",
         "pinax.invitations",
-        "pinax.invitations.tests"
+        "pinax.invitations.tests",
+        "pinax.templates",
+    ],
+    MIDDLEWARE=[
+        "django.contrib.sessions.middleware.SessionMiddleware",
+        "django.contrib.auth.middleware.AuthenticationMiddleware",
     ],
     DATABASES={
         "default": {
@@ -25,6 +31,18 @@ DEFAULT_SETTINGS = dict(
     SITE_ID=1,
     ROOT_URLCONF="pinax.invitations.tests.urls",
     SECRET_KEY="notasecret",
+    TEMPLATES=[
+        {
+            "BACKEND": "django.template.backends.django.DjangoTemplates",
+            "APP_DIRS": True,
+            "OPTIONS": {
+                "debug": True,
+                "context_processors": [
+                    "django.contrib.auth.context_processors.auth",
+                ]
+            }
+        },
+    ],
 )
 
 

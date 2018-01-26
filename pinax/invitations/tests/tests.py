@@ -1,9 +1,10 @@
 from django.contrib.auth.models import User
 from django.core.management import call_command
-from django.test import TestCase
 
 from account.models import SignupCode
+from pinax.invitations.forms import InviteForm
 from pinax.invitations.models import InvitationStat, JoinInvitation
+from test_plus.test import TestCase
 
 
 class TestsJoinInvitation(TestCase):
@@ -51,3 +52,47 @@ class TestsManagement(TestCase):
         call_command("add_invites", "10")
         istat = InvitationStat.objects.get(user=user)
         self.assertEqual(istat.invites_remaining(), 20)
+
+
+class FormTests(TestCase):
+
+    def test_already_invited(self):
+        """Ensure form is not valid if invite has already been sent"""
+        from_user = User.objects.create(username="eldarion")
+        to_user = User.objects.create(username="invitee", email="invitee@example.com")
+        InvitationStat.add_invites(2)
+        istat = from_user.invitationstat
+        istat.refresh_from_db()
+
+        # Create an existing invitation
+        JoinInvitation.invite(from_user, to_user.email, send=False)
+
+        # Attempt to invite same user again
+        form_data = {
+            "email_address": to_user.email
+        }
+        form = InviteForm(user=from_user, data=form_data)
+        self.assertFalse(form.is_valid())
+
+
+class ViewTests(TestCase):
+
+    def test_invite_view(self):
+        """verify no errors when posting good form data"""
+        user = self.make_user("amy")
+        InvitationStat.add_invites(2)
+        post_data = {
+            "email_address": "amy@example.com"
+        }
+        with self.login(user):
+            self.post("pinax_invitations:invite", data=post_data)
+            self.response_200()
+
+    def test_invite_view_bad_data(self):
+        """verify no errors when posting bad data"""
+        user = self.make_user("sandee")
+        post_data = {
+        }
+        with self.login(user):
+            self.post("pinax_invitations:invite", data=post_data)
+            self.response_200()
