@@ -149,7 +149,6 @@ In order to enable unlimited invitations, set this to -1.
 
 Default: 0
 
-
 ### Signals
 
 These signals are sent from `JoinInvitation` and provides a single keyword argument, "invitation"
@@ -282,7 +281,6 @@ Returns:
     "html": <rendered pinax/invitations/_invite_stat.html>  # provided by site developer
 }
 ```
-
 
 ### Templates
 
