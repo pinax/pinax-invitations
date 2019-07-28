@@ -79,9 +79,9 @@ Add `pinax.invitations` to your `INSTALLED_APPS` setting:
     ]
 ```
 
-Next, add [settings](#settings) as needed to customize pinax-invitation’s default behavior for your website.
+Add [settings](#settings) as needed to customize pinax-invitation’s default behavior for your website.
 
-Finally, add `pinax.invitations.urls` to your project urlpatterns:
+Add `pinax.invitations.urls` to your project urlpatterns:
 
 ```python
     urlpatterns = [
