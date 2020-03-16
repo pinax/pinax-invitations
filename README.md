@@ -54,10 +54,10 @@ Pinax is an open-source platform built on the Django Web Framework. It is an eco
 
 #### Supported Django and Python versions
 
-Django \ Python | 2.7 | 3.4 | 3.5 | 3.6
---------------- | --- | --- | --- | ---
-1.11 |  *  |  *  |  *  |  *  
-2.0  |     |  *  |  *  |  *
+Django / Python | 3.6 | 3.7 | 3.8
+--------------- | --- | --- | ---
+2.2  |  *  |  *  |  *
+3.0  |  *  |  *  |  *
 
 
 ## Documentation
@@ -415,4 +415,4 @@ and check out our [Pinax Project blog](http://blog.pinaxproject.com).
 
 ## License
 
-Copyright (c) 2012-2019 James Tauber and contributors under the [MIT license](https://opensource.org/licenses/MIT).
+Copyright (c) 2012-present James Tauber and contributors under the [MIT license](https://opensource.org/licenses/MIT).
