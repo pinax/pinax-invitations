@@ -11,7 +11,7 @@ class InviteForm(forms.Form):
 
     def __init__(self, *args, **kwargs):
         self.user = kwargs.pop("user")
-        super(InviteForm, self).__init__(*args, **kwargs)
+        super().__init__(*args, **kwargs)
 
     def clean_email_address(self):
         email = self.cleaned_data["email_address"]
