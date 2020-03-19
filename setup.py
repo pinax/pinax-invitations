@@ -1,6 +1,6 @@
 from setuptools import find_packages, setup
 
-VERSION = "6.1.2"
+VERSION = "7.0.0"
 LONG_DESCRIPTION = """
 .. image:: http://pinaxproject.com/pinax-design/patches/pinax-invitations.svg
     :target: https://pypi.python.org/pypi/pinax-invitations/
