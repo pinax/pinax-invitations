@@ -64,7 +64,7 @@ Where you can find what you need:
 * django-user-accounts
 * django-appconf
 
-#### Supported Django and Python versions
+#### Supported Django and Python Versions
 
 Django / Python | 3.6 | 3.7 | 3.8
 --------------- | --- | --- | ---
