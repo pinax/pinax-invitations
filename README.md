@@ -20,7 +20,7 @@
 * [Important Links](#important-links)
 * [Overview](#overview)
   * [Dependencies](#dependencies)
-  * [Supported Django and Python versions](#supported-django-and-python-versions)
+  * [Supported Django and Python Versions](#supported-django-and-python-versions)
 * [Documentation](#documentation)
   * [Installation](#installation)
   * [Usage](#usage)
