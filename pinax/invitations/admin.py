@@ -24,6 +24,6 @@ admin.site.register(
     JoinInvitation,
     list_display=["from_user", "to_user", "sent", "status", "to_user_email"],
     list_filter=["sent", "status"],
-    search_fields=["from_user__{}".format(User.USERNAME_FIELD)]
+    search_fields=[f"from_user__{User.USERNAME_FIELD}"]
 )
 admin.site.register(InvitationStat, InvitationStatAdmin)
