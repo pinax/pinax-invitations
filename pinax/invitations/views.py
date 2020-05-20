@@ -47,7 +47,7 @@ class InviteView(LoginRequiredMixin, FormMixin, View):
         return data
 
     def get_form_kwargs(self):
-        kwargs = super(InviteView, self).get_form_kwargs()
+        kwargs = super().get_form_kwargs()
         kwargs.update({
             "user": self.request.user
         })
@@ -73,7 +73,7 @@ class ManageInvitesView(LoginRequiredMixin, View):
 
     @method_decorator(permission_required("pinax-invitations.manage_invites", raise_exception=True))
     def dispatch(self, *args, **kwargs):
-        return super(ManageInvitesView, self).dispatch(*args, **kwargs)
+        return super().dispatch(*args, **kwargs)
 
 
 class InviteStatView(ManageInvitesView):
