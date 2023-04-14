@@ -337,6 +337,11 @@ Fragment displays how many invites a particular user has.
 
 ## Change Log
 
+### 8.0.0
+
+* Drop Django 2.* and Python 2,*, 3.4, 3.5 and 3.6 support
+* Add Django 4.* , and Python 3.9, 3.10 support
+
 ### 7.0.0
 
 * Drop Django 1.11, 2.0, and 2.1, and Python 2,7, 3.4, and 3.5 support
