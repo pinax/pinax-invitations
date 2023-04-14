@@ -66,10 +66,11 @@ Where you can find what you need:
 
 #### Supported Django and Python Versions
 
-Django / Python | 3.6 | 3.7 | 3.8
---------------- | --- | --- | ---
-2.2  |  *  |  *  |  *
-3.0  |  *  |  *  |  *
+Django / Python | 3.6 | 3.7 | 3.8 | 3.9
+--------------- | --- | --- | --- | ---  
+2.2  |  *  |  *  |  *  |  *   
+3.1  |  *  |  *  |  *  |  *  
+3.2  |  *  |  *  |  *  |  * 
 
 
 ## Documentation
@@ -335,6 +336,11 @@ Fragment displays how many invites a particular user has.
 
 
 ## Change Log
+
+### 8.0.0
+
+* Drop Django 2.* and Python 2,*, 3.4, 3.5 and 3.6 support
+* Add Django 4.* , and Python 3.9, 3.10 support
 
 ### 7.0.0
 

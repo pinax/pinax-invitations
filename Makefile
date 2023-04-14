@@ -6,5 +6,5 @@ init:
 
 test:
 	coverage erase
-	tox --parallel--safe-build
+	tox 
 	coverage html
