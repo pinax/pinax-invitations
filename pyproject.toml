@@ -39,6 +39,7 @@ dependencies = [
 tests = [
     "django-test-plus",
     "pinax-templates>=3.0.0",
+    "bootstrapform",
 ]
 
 [project.urls]
