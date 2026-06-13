@@ -1,4 +1,8 @@
-import pkg_resources
+from importlib.metadata import PackageNotFoundError, version
 
-__version__ = pkg_resources.get_distribution("pinax-invitations").version
+try:
+    __version__ = version("pinax-invitations")
+except PackageNotFoundError:
+    __version__ = "unknown"
+
 default_app_config = "pinax.invitations.apps.AppConfig"
