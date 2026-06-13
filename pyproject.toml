@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pinax-invitations"
+version = "8.0.0"
+description = "a user to user join invitations app"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {text = "MIT"}
+authors = [
+    {name = "Pinax Team", email = "team@pinaxproject.com"},
+]
+requires-python = ">=3.8"
+classifiers = [
+    "Development Status :: 5 - Production/Stable",
+    "Environment :: Web Environment",
+    "Framework :: Django",
+    "Framework :: Django :: 3.2",
+    "Framework :: Django :: 4.0",
+    "Framework :: Django :: 4.1",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "django>=3.2",
+    "django-appconf>=1.0.5",
+    "django-user-accounts>=3.2.0",
+]
+
+[project.optional-dependencies]
+tests = [
+    "django-test-plus",
+    "pinax-templates>=3.0.0",
+]
+
+[project.urls]
+Homepage = "http://github.com/pinax/pinax-invitations/"
+
+[tool.setuptools.packages.find]
+where = ["."]
+
+[tool.setuptools]
+zip-safe = false
